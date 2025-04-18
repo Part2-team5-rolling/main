@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import PostHeader from '../components/Layout/post-components/PostHeader';
-import getRollingData from '../api/getRollingdata';
+import { getRecipientsData } from '../api/recipients-api';
 
-const data = await getRollingData();
+const data = await getRecipientsData();
 
 const PostPage = () => {
 	const { id } = useParams();

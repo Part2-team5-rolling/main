@@ -1,4 +1,4 @@
-async function getRollingData() {
+export async function getRecipientsData() {
 	try {
 		const response = await fetch('https://rolling-api.vercel.app/15-5/recipients/');
 		if (!response.ok) {
@@ -10,5 +10,3 @@ async function getRollingData() {
 		console.error(error.message);
 	}
 }
-
-export default getRollingData;
