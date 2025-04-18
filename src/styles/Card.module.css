@@ -1,0 +1,10 @@
+.card {
+	width: 384px;
+	height: 280px;
+	border-radius: 16px;
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: rgba(0, 0, 0, 0.08) 0 2px 12px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
