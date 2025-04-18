@@ -24,7 +24,6 @@ function SendMessageForm(reciipientId) {
       ...values,
     };
     const result = await createMessage(reciipientId, apiParams);
-    console.log(result);
   };
     
   return (
