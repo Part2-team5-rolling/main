@@ -1,0 +1,59 @@
+.recent__message__wrap {
+	display: flex;
+	align-items: center;
+	max-width: 76px;
+}
+
+.recent__message__img {
+	width: 28px;
+	height: 28px;
+	border: 1px solid rgba(227, 227, 227, 1);
+	border-radius: 9999px;
+	position: relative;
+}
+
+.recent__message__wrap > img:nth-child(2) {
+	position: relative;
+	left: -16px;
+}
+
+.recent__message__wrap > img:nth-child(3) {
+	position: relative;
+	left: -32px;
+}
+
+.message__count {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 28px;
+	height: 28px;
+	border: 1px solid rgba(227, 227, 227, 1);
+	border-radius: 9999px;
+	background-color: rgba(255, 255, 255, 1);
+	position: relative;
+	left: -48px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+	font-family: 'Pretendard-Regular';
+	padding: 7px;
+}
+
+.count__comment {
+	display: flex;
+	font-size: 18px;
+	font-weight: 700;
+	font-family: 'Pretendard-Regular';
+	line-height: 27px;
+	position: relative;
+	/* left: 11px; */
+}
+
+.count__comment span {
+	font-size: 18px;
+	font-weight: 400;
+	font-family: 'Pretendard-Regular';
+	line-height: 27px;
+	width: 100%;
+}
