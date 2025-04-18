@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { createMessage } from "../../api/messages-api";
 
-const DUMMY_RECIPIENT_ID = 11218;
-function SendMessageForm() {
+function SendMessageForm(reciipientId) {
   const [values, setValues] = useState({
     from: '',
     profileImageURL: 'https://picsum.photos/id/547/100/100',
@@ -24,7 +23,7 @@ function SendMessageForm() {
     const apiParams = {
       ...values,
     };
-    const result = await createMessage(DUMMY_RECIPIENT_ID, apiParams);
+    const result = await createMessage(reciipientId, apiParams);
     console.log(result);
   };
     
