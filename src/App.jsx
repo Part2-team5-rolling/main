@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import List from './pages/List';
+import List from './pages/ListPage';
 
 function App() {
   return (
