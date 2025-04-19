@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import PostPage from './pages/PostPage';
+import SendMessagePage from './pages/SendMessagePage';
 
 function App() {
   return (
