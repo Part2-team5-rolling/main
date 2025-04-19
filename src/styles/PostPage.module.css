@@ -1,4 +1,19 @@
 .post__content {
 	width: 100vw;
 	height: 100vh;
+	padding-top: 113px;
+}
+
+.card__wrap {
+	width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+}
+
+@media (max-width: 1248px) {
+	.card__wrap {
+		margin: 0 24px;
+	}
 }

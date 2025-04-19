@@ -1,13 +1,18 @@
 import { useParams } from 'react-router-dom';
 import PostHeader from '../components/Layout/post-components/PostHeader';
-import { getRecipientsData } from '../api/recipients-api';
+import { getRecipientsData, getRecipientsMessage } from '../api/recipients-api';
 import { useEffect, useState } from 'react';
+import style from '../styles/PostPage.module.css';
+import Card from '../components/Card';
 
 const PostPage = () => {
 	const [data, setData] = useState({});
 	const [load, setLoad] = useState(true);
 	const { id } = useParams();
+	const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
+	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
 
+	// 롤링 페이퍼 기본 데이터 불러오기
 	useEffect(() => {
 		const postDataCall = async () => {
 			try {
@@ -23,7 +28,20 @@ const PostPage = () => {
 		postDataCall();
 	}, []);
 
-	const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
+	// 해당 롤링 페이퍼에 보내진 메세지 가져오기
+	useEffect(() => {
+		const postMessagesCall = async () => {
+			try {
+				const messagesCall = await getRecipientsMessage(id);
+				console.log(messagesCall);
+			} catch (error) {
+				console.error('messages 불러오기 실패', error);
+			}
+		};
+
+		postMessagesCall();
+	}, []);
+
 	return (
 		<>
 			{load ? (
@@ -37,7 +55,11 @@ const PostPage = () => {
 				/>
 			)}
 
-			<div>Post Page</div>
+			<div className={style.post__content} style={background}>
+				<div className={style.card__wrap}>
+					<Card userId={id} />
+				</div>
+			</div>
 		</>
 	);
 };

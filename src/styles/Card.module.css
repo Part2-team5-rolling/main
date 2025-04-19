@@ -8,3 +8,21 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.card__link__button {
+	width: 56px;
+	height: 56px;
+	background-color: rgba(85, 85, 85, 1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 9999px;
+}
+.card__link__button a {
+	width: 24px;
+	height: 24px;
+}
+
+.card__link__button img {
+	width: 100%;
+}
