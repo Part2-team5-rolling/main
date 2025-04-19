@@ -11,12 +11,13 @@ const dummyData = {
     {
       id: 1,
       title: '졸업 축하해요 🎓',
-      recipient: '홍길동',
-      backgroundColor: '#FFDFDF',
+      recipient: '오사랑',
+      backgroundColor: '#FFDFDF', // 배경색
+      backgroundImageURL: '/images/graduation-bg.jpg', // 배경 이미지 URL
       recentMessages: [
         {
           id: 101,
-          sender: '김철수',
+          sender: '이한빈',
           profileImageURL: null,
           relationship: '친구',
         },
@@ -27,16 +28,17 @@ const dummyData = {
       title: '생일 축하합니다 🎉',
       recipient: '김보경',
       backgroundColor: '#DFFFD7',
+      backgroundImageURL: '/images/birthday-bg.jpg',
       recentMessages: [
         {
           id: 102,
-          sender: '이영희',
-          profileImageURL: null,
+          sender: '오사랑',
+          profileImageURL: '/public/images/profile2.png',
           relationship: '동료',
         },
         {
           id: 103,
-          sender: '박민수',
+          sender: '김준우',
           profileImageURL: null,
           relationship: '지인',
         },
@@ -45,9 +47,35 @@ const dummyData = {
     {
       id: 3,
       title: '감사했어요!',
-      recipient: '최은지',
+      recipient: 'Team5',
       backgroundColor: '#D7E7FF',
-      recentMessages: [],
+      backgroundImageURL: null, // 배경 이미지가 없을 경우 null
+      recentMessages: [
+        {
+          id: 104,
+          sender: '김동한',
+          profileImageURL: null,
+          relationship: '친구',
+        },
+        {
+          id: 105,
+          sender: '김준우',
+          profileImageURL: null,
+          relationship: '지인',
+        },
+        {
+          id: 106,
+          sender: '오사랑',
+          profileImageURL: null,
+          relationship: '지인',
+        },
+        {
+          id: 107,
+          sender: '이한빈',
+          profileImageURL: null,
+          relationship: '지인',
+        },
+      ],
     },
   ],
 };

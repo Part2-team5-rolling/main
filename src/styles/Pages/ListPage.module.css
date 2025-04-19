@@ -1,6 +1,9 @@
 .listContainer {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     max-width: 1160px;
+    gap: 50px;
 }
 
 .listPopular {
@@ -18,11 +21,14 @@
 
 .cardContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
 }
 
 .cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 275px;
     padding: 30px 24px 20px;
     background-color: #ECD9FF;
@@ -30,8 +36,28 @@
     border: 1px solid rgba(0,0,0,0.1)
 }
 
-.card .recipient {
+.cardList .recipient {
     font-weight: bold;
     font-size: 24px;
     line-height: 36px;
+    color: #181818;
+}
+
+.cardList .profileWrap {
+    min-height: 28px;
+}
+
+.profileWrap .profileImage {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #fff;
+    overflow: hidden;
+}
+
+.profileWrap .profileImage:nth-child(1) {
+}
+
+.cardList .count {
+    color: #3a3a3a;
 }
