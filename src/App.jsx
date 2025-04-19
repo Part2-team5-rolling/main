@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import PostPage from './pages/PostPage';
+import './styles/Pages/common.css';
+
 
 function App() {
   return (
