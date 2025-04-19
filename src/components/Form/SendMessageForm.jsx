@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createMessage } from "../../api/messages-api";
 
-function SendMessageForm(reciipientId) {
+function SendMessageForm({ reciipientId }) {
   const [values, setValues] = useState({
     from: '',
     profileImageURL: 'https://picsum.photos/id/547/100/100',
