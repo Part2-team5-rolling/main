@@ -85,7 +85,7 @@ function SendMessageForm({ reciipientId }) {
         handleChange={handleChange} />
       <Button type='submit'>생성하기</Button>
     </form>
-  )
+  );
 }
 
 export default SendMessageForm;
