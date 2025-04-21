@@ -17,9 +17,10 @@ const dummyData = {
       recentMessages: [
         {
           id: 101,
-          sender: '이한빈',
-          profileImageURL: null,
+          sender: '김철수',
+          profileImageURL: '/public/images/profile3.png',
           relationship: '친구',
+          reactions: ['👍', '😄', '🎉'], // 이모지 추가
         },
       ],
     },
@@ -35,12 +36,14 @@ const dummyData = {
           sender: '오사랑',
           profileImageURL: '/public/images/profile2.png',
           relationship: '동료',
+          reactions: ['😍', '🥳'], // 이모지 추가
         },
         {
           id: 103,
           sender: '김준우',
           profileImageURL: null,
           relationship: '지인',
+          reactions: ['😊', '💖'], // 이모지 추가
         },
       ],
     },
@@ -56,24 +59,28 @@ const dummyData = {
           sender: '김동한',
           profileImageURL: null,
           relationship: '친구',
+          reactions: ['😇', '💖'], // 이모지 추가
         },
         {
           id: 105,
           sender: '김준우',
           profileImageURL: null,
           relationship: '지인',
+          reactions: ['😇', '😍', '🥳'], // 이모지 추가
         },
         {
           id: 106,
           sender: '오사랑',
           profileImageURL: null,
           relationship: '지인',
+          reactions: ['👍', '😄', '😇'], // 이모지 추가
         },
         {
           id: 107,
           sender: '이한빈',
           profileImageURL: null,
           relationship: '지인',
+          reactions: ['👍', '😄',], // 이모지 추가
         },
       ],
     },
