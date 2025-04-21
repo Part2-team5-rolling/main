@@ -31,9 +31,8 @@
 }
 
 .recent__message__section {
-	display: flex;
+	display: inline-flex;
 	position: relative;
-	/* right: 11px; */
 }
 
 .emoji__total {
