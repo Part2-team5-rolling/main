@@ -1,7 +1,6 @@
 .post__content {
-	width: 100vw;
-	height: 100vh;
 	padding-top: 113px;
+	height: 100%;
 }
 
 .card__wrap {
@@ -10,8 +9,14 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 24px;
+	margin-bottom: 200px;
 }
 
+.ovserver__target {
+	width: 100%;
+	height: 40px;
+	background-color: red;
+}
 @media (max-width: 1248px) {
 	.card__wrap {
 		margin: 0 24px;
