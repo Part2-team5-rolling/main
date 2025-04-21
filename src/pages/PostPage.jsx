@@ -62,7 +62,6 @@ const PostPage = () => {
 		if (loading && nextLoad) {
 			const observer = new IntersectionObserver(
 				(entries) => {
-					console.log(entries);
 					if (entries[0].isIntersecting) {
 						loadMore();
 					}
