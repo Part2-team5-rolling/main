@@ -1,4 +1,4 @@
-.PrimaryButton {
+.button--primary {
   width: 280px;
   height: 56px;
   padding: 14px 24px;
@@ -11,14 +11,14 @@
   letter-spacing: -0.01em;
 }
 
-.OutlinedButton {
+.button--outlinedButton {
   width: 157px;
   height: 40px;
   border-radius: 6px;
   padding: 8px 16px;
   border: 1px solid gray;
   background-color: #FFFFFF;
-  font-size: 16px;
+  font-size: 14px; /** 폰트 지정 이후에 16픽셀로 바꿔야함 **/
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.01em;
