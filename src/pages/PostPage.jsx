@@ -4,6 +4,8 @@ import { getRecipientsData, getRecipientsMessage } from '../api/recipients-api';
 import { useEffect, useRef, useState } from 'react';
 import style from '../styles/PostPage.module.css';
 import Card from '../components/Card';
+import PostModal from '../components/PostModal';
+import ModalItem from '../components/ModalItem';
 
 const PostPage = () => {
 	const [data, setData] = useState({});
@@ -13,11 +15,12 @@ const PostPage = () => {
 	const [nextLoad, setNextLoad] = useState('');
 	const [offset, setOffset] = useState(0);
 	const [limit, setLimit] = useState(5);
+	const [showModal, setShowModal] = useState(false);
+	const [modalItem, setModalItem] = useState(false);
 	const { id } = useParams();
 	const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
 	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
 	const targetRef = useRef(null);
-
 	const loadMore = () => {
 		setOffset((prev) => prev + 5);
 		setLimit((prev) => prev + 6);
@@ -29,7 +32,6 @@ const PostPage = () => {
 			try {
 				const dataCall = await getRecipientsData(id);
 				setData(dataCall);
-				console.log('mounting');
 			} catch (error) {
 				console.error('Post page 데이터 불러오기 실패!', error);
 			} finally {
@@ -106,11 +108,31 @@ const PostPage = () => {
 									cardFont={message.font}
 									content={message.content}
 									createdAt={message.createdAt}
+									onClick={() => {
+										setShowModal(true);
+										setModalItem(message);
+									}}
 								/>
 							);
 						})
 					)}
 				</div>
+				<div id='modal'></div>
+				{showModal && (
+					<PostModal>
+						<ModalItem
+							sender={modalItem.sender}
+							relationship={modalItem.relationship}
+							profileImg={modalItem.profileImageURL}
+							cardFont={modalItem.font}
+							content={modalItem.content}
+							createdAt={modalItem.createdAt}
+							onClose={() => {
+								setShowModal(false);
+							}}
+						/>
+					</PostModal>
+				)}
 				<div className={style.ovserver__target} ref={targetRef}>
 					...로딩중
 				</div>

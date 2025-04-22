@@ -79,10 +79,9 @@
 
 .user__relationship {
 	display: inline-block;
-	background-color: rgba(228, 251, 220, 1);
 	padding: 0 8px;
-	color: rgba(43, 166, 0, 1);
 	line-height: 20px;
+	border-radius: 4px;
 }
 
 .content {
