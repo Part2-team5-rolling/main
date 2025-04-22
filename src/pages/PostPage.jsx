@@ -26,6 +26,7 @@ const PostPage = () => {
 		setLimit((prev) => prev + 6);
 	};
 
+	console.log(messages);
 	// 롤링 페이퍼 기본 데이터 불러오기
 	useEffect(() => {
 		const postDataCall = async () => {
