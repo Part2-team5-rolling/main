@@ -3,6 +3,8 @@ import { createMessage } from '../../api/messages-api';
 import Input from '../common/Input';
 import SelectBox from '../common/SelectBox';
 import Button from '../common/Button';
+import style from '../../styles/Form/SendMessageForm.module.css';
+import TextEditor from '../../styles/Form/TextEditor';
 
 const RELATIONSHIP_OPTIONS = ['친구', '지인', '동료', '가족'];
 const FONT_OPTIONS = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
@@ -52,37 +54,42 @@ function SendMessageForm({ reciipientId }) {
   };
     
   return (
-    <form  onSubmit={handleSubmit}>
-      <Input
-        id={'from'}
-        name={'from'}
-        value={values.from}
-        label={'From.'}
-        placeholder={'이름을 입력해 주세요.'}
-        error={error}
-        handleChange={handleChange}
-        handleBlur={handleBlur} />
+    <form className={style.send__message__form} onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="profileImageURL">프로필 이미지</label>
-        <input id="profileImageURL" name="profileImageURL" value={values.profileImageURL} onChange={handleChange} />
+        <Input
+          id={'from'}
+          name={'from'}
+          value={values.from}
+          label={'From.'}
+          placeholder={'이름을 입력해 주세요.'}
+          error={error}
+          className={style.input__container}
+          handleChange={handleChange}
+          handleBlur={handleBlur} />
+        <div>
+          <label htmlFor="profileImageURL">프로필 이미지</label>
+          <input id="profileImageURL" name="profileImageURL" value={values.profileImageURL} onChange={handleChange} />
+        </div>
+        <SelectBox
+          id={'relationship'}
+          name={'relationship'}
+          label={'상대와의 관계'}
+          className={style.select__container}
+          options={RELATIONSHIP_OPTIONS.map((e, idx)=> ({ id: idx, value: e, label: e }))}
+          handleChange={handleChange} />
+        <div>
+          <label htmlFor="content">내용을 입력해 주세요.</label>
+          <TextEditor />
+        </div>
+        <SelectBox
+          id={'font'}
+          name={'font'}
+          label={'폰트 선택'}
+          options={FONT_OPTIONS.map((e, idx)=> ({ id: idx, value: e, label: e }))}
+          className={style.select__container}
+          selectedOption={values.font}
+          handleChange={handleChange} />
       </div>
-      <SelectBox
-        id={'relationship'}
-        name={'relationship'}
-        label={'상대와의 관계'}
-        options={RELATIONSHIP_OPTIONS.map((e, idx)=> ({ id: idx, value: e, label: e }))}
-        handleChange={handleChange} />
-      <div>
-        <label htmlFor="content">내용을 입력해 주세요.</label>
-        <textarea id="content" name="content" value={values.content} onChange={handleChange} />
-      </div>
-      <SelectBox
-        id={'font'}
-        name={'font'}
-        label={'폰트 선택'}
-        options={FONT_OPTIONS.map((e, idx)=> ({ id: idx, value: e, label: e }))}
-        selectedOption={values.font}
-        handleChange={handleChange} />
       <Button type='submit'>생성하기</Button>
     </form>
   );
