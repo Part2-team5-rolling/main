@@ -1,4 +1,4 @@
-.listContainer {
+.list-page {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -6,26 +6,26 @@
     gap: 50px;
 }
 
-.listPopular {
+.list-page__popular {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.listContainer h2 {
+.list-page__popular h2 {
     font-weight: bold;
     font-size: 24px;
     line-height: 36px;
     text-align: left;
 }
 
-.cardContainer {
+.list-page__card-container {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.cardList {
+.list-page__card {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -37,21 +37,21 @@
     box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
 }
 
-.cardList .recipient {
+.list-page__card .list-page__recipient {
     font-weight: bold;
     font-size: 24px;
     line-height: 36px;
     color: #181818;
 }
 
-.cardList .profileWrap {
+.list-page__card .list-page__profile-wrap {
     display: flex;
     gap: -16px;
     min-height: 28px;
     position: relative;
 }
 
-.profileWrap .profileImage {
+.list-page__profile-wrap .list-page__profile-image {
     position: absolute;
     width: 28px;
     height: 28px;
@@ -62,7 +62,7 @@
     object-fit: cover;
 }
 
-.profileCount {
+.list-page__profile-wrap .list-page__profile-count {
     position: absolute;
     left: 40px;
     bottom: -6px;
@@ -74,10 +74,39 @@
     background-color: white;
 }
 
-.cardList .count {
+.list-page__card .list-page__count {
     color: #3a3a3a;
 }
 
-.count span {
+.list-page__count span {
     font-weight: bold;
+}
+
+.list-page__emoji-container {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.list-page__emojicount {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.list-page__emojicount2 {
+    font-weight: bold;
+}
+
+.list-page__recent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.list-page__recent h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: left;
 }
