@@ -55,7 +55,6 @@
 .message__user {
 	display: flex;
 	gap: 14px;
-	font-family: 'Pretendard';
 	border-bottom: 1px solid rgba(238, 238, 238, 1);
 	padding-bottom: 15px;
 	margin-bottom: 16px;
@@ -85,7 +84,6 @@
 }
 
 .content {
-	font-family: 'Pretendard';
 	font-size: 18px;
 	font-weight: 400;
 	line-height: 28px;
@@ -93,7 +91,6 @@
 }
 
 .createdAt {
-	font-family: 'Pretendard';
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 18px;
