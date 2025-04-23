@@ -1,0 +1,231 @@
+.homepage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.homepage__contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.homepage__content {
+  width: 1200px;
+  height: 324px;
+  border-radius: 16px;
+  background-color: #F6F8FF;
+  display: flex;
+  margin: 0px auto;
+  padding: 60px 0px 60px 60px;
+  box-sizing: border-box;
+}
+
+.homepage__content--01 {
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.homepage__content--01 > img {
+  width: 720px;
+  height: 204px;
+}
+
+.homepage__content--02 {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.homepage__content--02 > img {
+  width: 720px;
+  height: 204px;
+}
+
+.homepage__title {
+  width: 80px;
+  height: 32px;
+  border-radius: 50px;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  background-color: #9935ff;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.homepage__highlight {
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  margin: 16px 0px 8px;
+}
+
+.homepage__highlight > span {
+  display: block;
+}
+
+.homepage__subtext {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+/* 태블릿 버전 (768px ~ 1023px) */
+@media (max-width: 1023px) {
+  .homepage__content {
+    width: 100vw;
+    max-width: 720px;
+    margin: 0px;
+    height: auto;
+    align-items: center;
+  }
+
+  .homepage__contents {
+    margin : 0px;
+  }
+
+  .homepage__content--01,
+  .homepage__content--02 {
+    flex-direction: column;
+  }
+
+  .homepage__content--01 {
+    margin-top: 49px;
+    margin-bottom: 30px;
+  }
+
+  .homepage__content--02 {
+    flex-direction: column;
+    margin-bottom: 72px;
+  }
+
+  .homepage__content--01 > img,
+  .homepage__content--02 > img {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .homepage__text {
+    width: 100%;
+    text-align: left;
+  }
+
+  .homepage__highlight {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .homepage__highlight > span {
+    display: inline;
+  }
+
+  .homepage__subtext {
+    font-size: 16px;
+  }
+
+  .homepage__title {
+    margin: 0 0 12px 0;
+  }
+
+  .button--primary {
+    width: calc(100% - 48px);
+    max-width: 720px;
+    box-sizing: border-box;
+  }
+}
+
+/* 모바일 버전 (최대 767px) */
+@media (max-width: 767px) {
+  .homepage__contents {
+    width: 100vw;
+    max-width: 360px;
+    margin: 0;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 20px;
+    box-sizing: border-box;
+  }
+
+  .homepage__content {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .homepage__content--01,
+  .homepage__content--02 {
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .homepage__content--01 {
+    height: 352px;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+  }
+
+  .homepage__content--02 {
+    height: 362px;
+  }
+
+  .homepage__content--01 > picture,
+  .homepage__content--02 > picture {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .homepage__content--01 > picture {
+    margin: 0 auto;
+    display: block;
+    left: 5%;
+    bottom: 0;
+    transform: translateX(-15%);
+    max-width: none;
+    z-index: 1;
+  }
+
+  .homepage__text {
+    width: 100%;
+    text-align: left;
+  }
+
+  .homepage__highlight {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .homepage__subtext {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .homepage__title {
+    width: 80px;
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .button--primary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
