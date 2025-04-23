@@ -29,16 +29,26 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 					</button>
 				)}
 
-				<button className={style.emoji__add} type='button'>
-					<img src={addEmoji} alt='이모지 추가' />
-					<span>추가</span>
-				</button>
-
-				<div className={style.divider}></div>
-
-				<button className={style.share} type='button'>
-					<img src={share} alt='공유하기' />
-				</button>
+				<ul className={style.button__list}>
+					<li>
+						<button className={style.emoji__add} type='button'>
+							<img src={addEmoji} alt='이모지 추가' />
+							<span>추가</span>
+						</button>
+					</li>
+					<li className={style.divider}></li>
+					<li>
+						<button className={style.share} type='button'>
+							<img src={share} alt='공유하기' />
+						</button>
+						<div className={style.share__text__wrap}>
+							<ul className={style.share__text__list}>
+								<li className={style.share__text}>카카오톡 공유</li>
+								<li className={style.share__text__desc}>URL 공유</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	);
