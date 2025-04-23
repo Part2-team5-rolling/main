@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createMessage } from '../../api/messages-api';
 import Input from '../common/Input';
 import SelectBox from '../common/SelectBox';
@@ -14,7 +15,7 @@ function SendMessageForm({ reciipientId }) {
     error: false,
     message: '값을 입력해 주세요.',
   });
-
+  const [contentError, setContentError] = useState(true);
   const [values, setValues] = useState({
     from: '',
     profileImageURL: 'https://picsum.photos/id/547/100/100',
@@ -22,27 +23,53 @@ function SendMessageForm({ reciipientId }) {
     content: '',
     font: 'Noto Sans',
   });
+  const navigate = useNavigate();
+
+
+  const validateValue = (value, constraint, errorCallback) => {
+    const { error, message } = constraint(value);
+    errorCallback(error, message);
+  }
+
+  const stringLengthConstraint = (value, min, max) => {
+    if (min && value.length < min) return { error: true, message: min === 1 ? '값을 입력해 주세요.' : `최소 ${min}자는 입력해야 합니다.`};
+    if (max && value.length > max) return { error: true, message: `최대 ${max}자까지만 입력 가능합니다.` };
+    return { error: false, message: '' };
+  };
+
+  const fromConstraint = (value) => stringLengthConstraint(value, 1, 40);
+  const fromErrorCallback = (isError, errorMessage) => {
+    if (error !== isError) {
+      setError((prev) => ({
+        ...prev,
+        error: isError,
+        message: errorMessage,
+      }));
+    };
+  };
+
+  const cententConstraint = (value) => stringLengthConstraint(value, 1);
+  const contentErrorCallback = (isError) => {
+    if (contentError !== isError) {
+      setContentError(isError);
+    };
+  };
 
   const handleBlur = (e) => {
-    if (!values.from) {
-      setError((prev) => ({
-        ...prev,
-        error: true,
-      }))
-    } else {
-      setError((prev) => ({
-        ...prev,
-        error: false,
-      }))
-    }
-  }
+    validateValue(e.target.value, fromConstraint, fromErrorCallback);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    setValues((prevValues) => {
+      const newValues = {
+        ...prevValues,
+        [name]: value,
+      };
+      validateValue(newValues.from, fromConstraint, fromErrorCallback);
+      validateValue(newValues.content, cententConstraint, contentErrorCallback);
+      return newValues;
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -51,6 +78,7 @@ function SendMessageForm({ reciipientId }) {
       ...values,
     };
     const result = await createMessage(reciipientId, apiParams);
+    navigate(`/post/${reciipientId}`);
   };
     
   return (
@@ -79,7 +107,7 @@ function SendMessageForm({ reciipientId }) {
           handleChange={handleChange} />
         <div>
           <label htmlFor="content">내용을 입력해 주세요.</label>
-          <TextEditor />
+          <TextEditor className={style.editor__container} handleChange={(data) => handleChange({target: { name: 'content', value: data }})} />
         </div>
         <SelectBox
           id={'font'}
@@ -90,7 +118,7 @@ function SendMessageForm({ reciipientId }) {
           selectedOption={values.font}
           handleChange={handleChange} />
       </div>
-      <Button type='submit'>생성하기</Button>
+      <Button className={`button--primary`} type='submit' disabled={error.error || contentError}>생성하기</Button>
     </form>
   );
 }
