@@ -36,12 +36,13 @@ const PostPage = () => {
 		}
 	};
 
-	const modalCloseHandler = () => {
-		window.addEventListener('click', (e) => HandleModalClick(e));
+	useEffect(() => {
+		window.addEventListener('click', HandleModalClick);
 		return () => {
-			window.removeEventListener('click', (e) => HandleModalClick(e));
+			window.removeEventListener('click', HandleModalClick);
+			console.log('removeEventListener');
 		};
-	};
+	}, [showModal]);
 
 	// 롤링 페이퍼 기본 데이터 불러오기
 	useEffect(() => {
@@ -135,7 +136,7 @@ const PostPage = () => {
 					)}
 				</div>
 				{showModal && (
-					<PostModal onClick={modalCloseHandler}>
+					<PostModal>
 						<ModalItem
 							sender={modalItem.sender}
 							relationship={modalItem.relationship}
