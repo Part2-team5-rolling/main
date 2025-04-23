@@ -107,8 +107,8 @@ function ListPage() {
                     .sort((a, b) => b[1] - a[1]) // 이모지 갯수 기준 내림차순 정렬
                     .slice(0, 3) // 최대 3개 이모지만 표시
                     .map(([emoji, count], index) => (
-                      <span key={index} className={styles['list-page__emojicount']}>
-                        {emoji} <span className={styles['list-page__emojicount2']}>{count}</span>
+                      <span key={index} className={styles['list-page__box-emojicount']}>
+                        {emoji} <span className={styles['list-page__num-emojicount']}>{count}</span>
                       </span>
                     ))}
                 </div>

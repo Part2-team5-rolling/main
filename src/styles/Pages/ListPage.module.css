@@ -75,6 +75,9 @@
 }
 
 .list-page__card .list-page__count {
+    display: block;
+    padding-bottom: 43px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
     color: #3a3a3a;
 }
 
@@ -85,17 +88,23 @@
 .list-page__emoji-container {
     display: flex;
     gap: 8px;
+    padding-top: 4px;
     font-size: 14px;
 }
 
-.list-page__emojicount {
+.list-page__box-emojicount {
     display: flex;
-    gap: 4px;
+    gap: 2px;
+    padding: 8px 12px;
     align-items: center;
+    border-radius: 32px;
+    background-color: rgba(0,0,0,0.54);
 }
 
-.list-page__emojicount2 {
-    font-weight: bold;
+.list-page__num-emojicount {
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
 }
 
 .list-page__recent {
