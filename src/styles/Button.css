@@ -11,6 +11,10 @@
   letter-spacing: -0.01em;
   border-radius: 12px;
   border: 0px;
+
+  &:disabled {
+    background-color: #CCCCCC;
+  }
 }
 
 .button--outlinedButton {
@@ -24,4 +28,8 @@
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.01em;
+
+  &:disabled {
+    background-color: #CCCCCC;
+  }
 }
