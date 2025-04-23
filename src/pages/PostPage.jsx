@@ -21,12 +21,24 @@ const PostPage = () => {
 	const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
 	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
 	const targetRef = useRef(null);
+
 	const loadMore = () => {
 		setOffset((prev) => prev + 5);
-		setLimit((prev) => prev + 6);
+		if (limit > 6) {
+			setLimit(6);
+		}
+		setLimit((prev) => prev + 1);
 	};
 
-	console.log(messages);
+	const modalCloseHandler = () => {
+		window.addEventListener('click', (e) => {
+			console.log(e.target.id);
+			if (e.target.id === 'modal') {
+				setShowModal(false);
+			}
+		});
+	};
+
 	// 롤링 페이퍼 기본 데이터 불러오기
 	useEffect(() => {
 		const postDataCall = async () => {
@@ -69,7 +81,7 @@ const PostPage = () => {
 						loadMore();
 					}
 				},
-				{ threshold: 1 }
+				{ threshold: 0.8 }
 			);
 			observer.observe(targetRef.current);
 
@@ -118,9 +130,8 @@ const PostPage = () => {
 						})
 					)}
 				</div>
-				<div id='modal'></div>
 				{showModal && (
-					<PostModal>
+					<PostModal onClick={modalCloseHandler}>
 						<ModalItem
 							sender={modalItem.sender}
 							relationship={modalItem.relationship}
