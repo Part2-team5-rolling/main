@@ -19,7 +19,6 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 	const handleOutsideClick = (event) => {
 		if (shareButtonRef.current && !shareButtonRef.current.contains(event.target)) {
 			setIsOpen(false);
-			console.log('클릭한 요소:', event.target);
 		}
 	};
 
