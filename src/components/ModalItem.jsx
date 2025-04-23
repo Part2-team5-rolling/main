@@ -43,7 +43,6 @@ const ModalItem = ({ sender, relationship, profileImg, cardFont, content, create
 	return (
 		<div className={style.modal__item} style={{ fontFamily: cardFont }}>
 			<div className={style.modal__info}>
-				{/* <div className={style.sender}> */}
 				<img className={style.sender__img} src={profileImg} alt='메세지 보낸 유저 이미지' />
 				<div className={style.sender__name}>
 					<h3>
@@ -55,7 +54,6 @@ const ModalItem = ({ sender, relationship, profileImg, cardFont, content, create
 						{relationship}
 					</div>
 				</div>
-				{/* </div> */}
 
 				<p className={style.send__date}>{createdDate}</p>
 			</div>

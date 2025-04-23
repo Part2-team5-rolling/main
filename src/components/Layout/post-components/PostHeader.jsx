@@ -4,8 +4,32 @@ import TopReactions from './TopReactions';
 import arrow from '/icons/arrow_down.png';
 import addEmoji from '/icons/add.png';
 import share from '/icons/share.png';
+import ShareMenu from '../../ShareMenu';
+import { useRef, useState } from 'react';
+import { useEffect } from 'react';
 
 const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const shareButtonRef = useRef(null);
+
+	const handleClick = () => {
+		setIsOpen(!isOpen);
+	};
+
+	const handleOutsideClick = (event) => {
+		if (shareButtonRef.current && !shareButtonRef.current.contains(event.target)) {
+			setIsOpen(false);
+			console.log('클릭한 요소:', event.target);
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener('click', handleOutsideClick);
+		return () => {
+			document.removeEventListener('click', handleOutsideClick);
+		};
+	}, [isOpen]);
+
 	return (
 		<div className={style.wrap}>
 			<h2 className={style.user__name}>To. {userName}</h2>
@@ -38,15 +62,10 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 					</li>
 					<li className={style.divider}></li>
 					<li>
-						<button className={style.share} type='button'>
+						<button className={style.share} type='button' ref={shareButtonRef} onClick={handleClick}>
 							<img src={share} alt='공유하기' />
 						</button>
-						<div className={style.share__text__wrap}>
-							<ul className={style.share__text__list}>
-								<li className={style.share__text}>카카오톡 공유</li>
-								<li className={style.share__text__desc}>URL 공유</li>
-							</ul>
-						</div>
+						{isOpen && <ShareMenu onClick={handleClick} />}
 					</li>
 				</ul>
 			</div>
