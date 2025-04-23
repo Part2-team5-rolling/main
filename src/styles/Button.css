@@ -9,6 +9,8 @@
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.01em;
+  border-radius: 12px;
+  border: 0px;
 }
 
 .button--outlinedButton {
