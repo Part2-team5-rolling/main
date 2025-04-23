@@ -1,0 +1,39 @@
+#root {
+  padding-top: 64px;
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid #EDEDED;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  background-color: #FFFFFF;
+}
+
+.header-contents {
+  max-width: 1248px;
+  height: 40px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 24px; 
+}
+
+.header-contents > img {
+  width: 106px;
+  height: 30px;
+}
+
+.header-contents > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

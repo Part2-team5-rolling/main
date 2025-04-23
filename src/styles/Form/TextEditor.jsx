@@ -5,7 +5,7 @@ import { ClassicEditor, Autosave, BlockQuote, Bold, Essentials, Indent, IndentBl
 
 import 'ckeditor5/ckeditor5.css';
 
-function Editor() {
+function Editor({ handleChange, className }) {
   const editorContainerRef = useRef(null);
 	const editorRef = useRef(null);
 	const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -29,7 +29,7 @@ function Editor() {
 				},
 				plugins: [Autosave, BlockQuote, Bold, Essentials, Indent, IndentBlock, Italic, Link, Paragraph, Underline],
 				initialData:
-					'test',
+					'',
 				licenseKey: 'GPL',
 				link: {
 					addTargetToExternalLinks: true,
@@ -50,13 +50,11 @@ function Editor() {
 	}, [isLayoutReady]);
 
   return (
-    <div className="main-container">
-			<div className="editor-container editor-container_classic-editor" ref={editorContainerRef}>
-				<div className="editor-container__editor">
-					<div ref={editorRef}>{editorConfig && <CKEditor editor={ClassicEditor} config={editorConfig} />}</div>
-				</div>
-			</div>
-		</div>
+    <div className={`editor-container editor-container_classic-editor ${className}`} ref={editorContainerRef}>
+      <div className="editor-container__editor">
+        <div ref={editorRef}>{editorConfig && <CKEditor editor={ClassicEditor} config={editorConfig} onChange={(_, edt) => handleChange(edt.getData())} />}</div>
+      </div>
+    </div>
   );
 }
 
