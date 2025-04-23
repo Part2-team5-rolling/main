@@ -39,6 +39,7 @@
 	}
 	.card__wrap {
 		margin: unset;
+		margin-bottom: 200px;
 		padding: 0 24px;
 		width: 100%;
 	}
