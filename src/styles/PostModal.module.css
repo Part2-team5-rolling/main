@@ -9,3 +9,16 @@
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.6);
 }
+
+.modal__content {
+	max-width: 600px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+	.modal__content {
+		margin: unset;
+		padding: 0 24px;
+	}
+}

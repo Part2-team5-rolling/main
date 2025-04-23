@@ -21,12 +21,29 @@ const PostPage = () => {
 	const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
 	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
 	const targetRef = useRef(null);
+
 	const loadMore = () => {
 		setOffset((prev) => prev + 5);
-		setLimit((prev) => prev + 6);
+		if (limit > 6) {
+			setLimit(6);
+		}
+		setLimit((prev) => prev + 1);
 	};
 
-	console.log(messages);
+	const HandleModalClick = (e) => {
+		if (e.target.id === 'modal') {
+			setShowModal(false);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('click', HandleModalClick);
+		return () => {
+			window.removeEventListener('click', HandleModalClick);
+			console.log('removeEventListener');
+		};
+	}, [showModal]);
+
 	// 롤링 페이퍼 기본 데이터 불러오기
 	useEffect(() => {
 		const postDataCall = async () => {
@@ -69,7 +86,7 @@ const PostPage = () => {
 						loadMore();
 					}
 				},
-				{ threshold: 1 }
+				{ threshold: 0.8 }
 			);
 			observer.observe(targetRef.current);
 
@@ -118,7 +135,6 @@ const PostPage = () => {
 						})
 					)}
 				</div>
-				<div id='modal'></div>
 				{showModal && (
 					<PostModal>
 						<ModalItem
