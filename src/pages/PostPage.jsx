@@ -30,13 +30,17 @@ const PostPage = () => {
 		setLimit((prev) => prev + 1);
 	};
 
+	const HandleModalClick = (e) => {
+		if (e.target.id === 'modal') {
+			setShowModal(false);
+		}
+	};
+
 	const modalCloseHandler = () => {
-		window.addEventListener('click', (e) => {
-			console.log(e.target.id);
-			if (e.target.id === 'modal') {
-				setShowModal(false);
-			}
-		});
+		window.addEventListener('click', (e) => HandleModalClick(e));
+		return () => {
+			window.removeEventListener('click', (e) => HandleModalClick(e));
+		};
 	};
 
 	// 롤링 페이퍼 기본 데이터 불러오기
