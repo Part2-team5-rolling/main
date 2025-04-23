@@ -1,0 +1,127 @@
+.rolling-paper__form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 2rem;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.rolling-paper__label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.rolling-paper__input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.rolling-paper__error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.rolling-paper__section-title {
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-top: 1rem;
+}
+
+.rolling-paper__section-desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.rolling-paper__tab-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.rolling-paper__tab-button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+
+.rolling-paper__active-tab {
+  border: 2px solid #9935FF;
+  color: #9935FF;
+  background-color: white;
+}
+
+.rolling-paper__color-box-container,
+.rolling-paper__image-box-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.rolling-paper__color-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.rolling-paper__image-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+  background-size: cover;
+}
+
+.rolling-paper__color-box:hover,
+.rolling-paper__image-box:hover {
+  transform: scale(1.05);
+}
+
+.rolling-paper__selected {
+  border: 2px solid #444;
+}
+
+.rolling-paper__checkmark {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.rolling-paper__submit-button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  border: none;
+  background-color: #a855f7;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
