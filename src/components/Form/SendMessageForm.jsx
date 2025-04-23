@@ -6,9 +6,22 @@ import SelectBox from '../common/SelectBox';
 import Button from '../common/Button';
 import style from '../../styles/Form/SendMessageForm.module.css';
 import TextEditor from '../../styles/Form/TextEditor';
+import ProfileImages from './ProfileImages';
 
 const RELATIONSHIP_OPTIONS = ['친구', '지인', '동료', '가족'];
 const FONT_OPTIONS = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
+const IMAGE_URLS = [
+  'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png',
+  'https://picsum.photos/id/522/100/100',
+  'https://picsum.photos/id/547/100/100',
+  'https://picsum.photos/id/268/100/100',
+  'https://picsum.photos/id/1082/100/100',
+  'https://picsum.photos/id/571/100/100',
+  'https://picsum.photos/id/494/100/100',
+  'https://picsum.photos/id/859/100/100',
+  'https://picsum.photos/id/437/100/100',
+  'https://picsum.photos/id/1064/100/100'
+]
 
 function SendMessageForm({ reciipientId }) {
   const [error, setError] = useState({
@@ -18,10 +31,10 @@ function SendMessageForm({ reciipientId }) {
   const [contentError, setContentError] = useState(true);
   const [values, setValues] = useState({
     from: '',
-    profileImageURL: 'https://picsum.photos/id/547/100/100',
-    relationship: '친구',
+    profileImageURL: IMAGE_URLS[0],
+    relationship: RELATIONSHIP_OPTIONS[0],
     content: '',
-    font: 'Noto Sans',
+    font: FONT_OPTIONS[0],
   });
   const navigate = useNavigate();
 
@@ -72,6 +85,10 @@ function SendMessageForm({ reciipientId }) {
     });
   };
 
+  const handleImageChange = (name, src) => {
+    setValues((prev) => ({ ...prev, [name]: src}));
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const apiParams = {
@@ -94,10 +111,14 @@ function SendMessageForm({ reciipientId }) {
           className={style.input__container}
           handleChange={handleChange}
           handleBlur={handleBlur} />
-        <div>
-          <label htmlFor="profileImageURL">프로필 이미지</label>
-          <input id="profileImageURL" name="profileImageURL" value={values.profileImageURL} onChange={handleChange} />
-        </div>
+        <ProfileImages
+          id={'profileImageURL'}
+          name={'profileImageURL'}
+          images={IMAGE_URLS}
+          selectedImage={values.profileImageURL}
+          label={'프로필 이미지'}
+          className={style.profile__container}
+          handleChange={handleImageChange} />
         <SelectBox
           id={'relationship'}
           name={'relationship'}
@@ -106,7 +127,7 @@ function SendMessageForm({ reciipientId }) {
           options={RELATIONSHIP_OPTIONS.map((e, idx)=> ({ id: idx, value: e, label: e }))}
           handleChange={handleChange} />
         <div>
-          <label htmlFor="content">내용을 입력해 주세요.</label>
+          <label htmlFor='content'>내용을 입력해 주세요.</label>
           <TextEditor className={style.editor__container} handleChange={(data) => handleChange({target: { name: 'content', value: data }})} />
         </div>
         <SelectBox
