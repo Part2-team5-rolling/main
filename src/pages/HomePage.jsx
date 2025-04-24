@@ -7,6 +7,7 @@ import mainImage01 from '../assets/home-content-01.png';
 import mainImage02 from '../assets/home-content-02.png';
 
 
+
 function HomePage() {
   const navigate = useNavigate();
 

@@ -1,0 +1,16 @@
+.content {
+  justify-items: center;
+  padding: 47px 24px 0;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding-top: 49px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 50px 20px 0;
+  }
+}
