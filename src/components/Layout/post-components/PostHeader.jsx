@@ -4,7 +4,7 @@ import TopReactions from './TopReactions';
 import arrow from '/icons/arrow_down.png';
 import addEmoji from '/icons/add.png';
 import share from '/icons/share.png';
-import ShareMenu from '../../ShareMenu';
+import ShareMenu from './ShareMenu';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 
@@ -60,7 +60,7 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 						</button>
 					</li>
 					<li className={style.divider}></li>
-					<li>
+					<li className={style.share__list}>
 						<button className={style.share} type='button' ref={shareButtonRef} onClick={handleClick}>
 							<img src={share} alt='공유하기' />
 						</button>

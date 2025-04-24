@@ -79,6 +79,12 @@
 	font-family: 'Pretendard-Regular';
 }
 
+.share__list {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
 .share {
 	cursor: pointer;
 	background-color: rgba(255, 255, 255, 1);

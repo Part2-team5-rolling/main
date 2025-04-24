@@ -3,14 +3,13 @@
 	height: 120px;
 	position: absolute;
 	top: 120px;
-	right: 350px;
+	right: auto;
 	padding: 10px 1px;
 	background-color: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(204, 204, 204, 1);
 	border-radius: 8px;
 	z-index: 1;
 	list-style: none;
-	padding: 10px 1px;
 }
 
 .share__text__wrap li {
