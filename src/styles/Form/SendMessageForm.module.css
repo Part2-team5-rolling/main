@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 768px) {
-	.send__message__form {
+  .send__message__form {
     max-width: 720px;
     width: 100%;
   }
