@@ -12,7 +12,7 @@ const dummyData = {
       id: 1,
       title: '졸업 축하해요 🎓',
       recipient: '오사랑',
-      backgroundColor: '#FFDFDF', // 배경색
+      backgroundColor: '#FBD46D', // 배경색
       backgroundImageURL: '/images/graduation-bg.jpg', // 배경 이미지 URL
       recentMessages: [
         {
@@ -28,7 +28,7 @@ const dummyData = {
       id: 2,
       title: '생일 축하합니다 🎉',
       recipient: '김보경',
-      backgroundColor: '#DFFFD7',
+      backgroundColor: '#BCE6FF',
       backgroundImageURL: '/images/birthday-bg.jpg',
       recentMessages: [
         {
@@ -51,7 +51,7 @@ const dummyData = {
       id: 3,
       title: '감사했어요!',
       recipient: 'Team5',
-      backgroundColor: '#D7E7FF',
+      backgroundColor: '#E5D4F4',
       backgroundImageURL: null, // 배경 이미지가 없을 경우 null
       recentMessages: [
         {

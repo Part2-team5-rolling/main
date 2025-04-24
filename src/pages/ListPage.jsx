@@ -56,6 +56,17 @@ function ListPage() {
 
   const reactionsByRecipient = getReactionsByRecipient(); // 받은 사람 별 이모지 갯수
 
+  // 배경색에 맞는 이미지 반환 함수
+  const getBackgroundImage = (backgroundColor) => {
+    const colorImageMap = {
+      '#FBD46D': '/public/images/yellow-backimg.png', // yellow
+      '#E5D4F4': '/public/images/purple-backimg.png', // purple
+      '#BCE6FF': '/public/images/blue-backimg.png',   // blue
+      '#D4F4DD': '/public/images/green-backimg.png',  // green
+    };
+    return colorImageMap[backgroundColor] || ''; // 매칭되지 않으면 기본값 ''
+  };
+
   return (
     <div className={styles['list-page']}>
       <div className={styles['list-page__popular']}>
@@ -67,16 +78,17 @@ function ListPage() {
             {/* list.map을 사용하여 각 롤링 페이퍼 항목을 렌더링 */}
             {list.map((item) => (
               <div
-                key={item.id}
-                className={styles['list-page__card']}
-                style={{
-                  backgroundColor: item.backgroundColor || 'white', // 배경 색상
-                  backgroundImage: item.backgroundImageURL
-                    ? `url(${item.backgroundImageURL})`
-                    : 'none', // 배경 이미지
-                  backgroundSize: 'cover', // 배경 이미지 크기 조정
-                }}
-              >
+              key={item.id}
+              className={styles['list-page__card']}
+              style={{
+                backgroundColor: item.backgroundColor || 'white', // 배경 색상
+                backgroundImage: getBackgroundImage(item.backgroundColor) 
+                  ? `url(${getBackgroundImage(item.backgroundColor)})` // 배경 이미지
+                  : 'none', // 배경 이미지 없으면 none
+                backgroundSize: '50%', // 무조건 50% 크기로 설정
+                backgroundPosition: 'bottom right', // 무조건 bottom right 위치로 설정
+              }}
+            >
                 <p className={styles['list-page__recipient']}>To. {item.recipient}</p> {/* 수신자 이름 표시 */}
 
                 <div className={styles['list-page__profile-wrap']}>
