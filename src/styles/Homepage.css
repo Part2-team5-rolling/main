@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .homepage {
   width: 100vw;
   height: 100vh;
@@ -12,7 +16,8 @@
 }
 
 .homepage__content {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   height: 324px;
   border-radius: 16px;
   background-color: #F6F8FF;
@@ -85,14 +90,17 @@
 @media (max-width: 1023px) {
   .homepage__content {
     width: 100vw;
-    max-width: 720px;
     margin: 0px;
     height: auto;
     align-items: center;
+    gap: 36px;
+    padding: 40px;
   }
 
   .homepage__contents {
-    margin : 0px;
+    width: 100%;
+    max-width: 975px;
+    margin : 0px 24px;
   }
 
   .homepage__content--01,
@@ -107,14 +115,16 @@
 
   .homepage__content--02 {
     flex-direction: column;
-    margin-bottom: 72px;
+    margin-bottom: 48px;
   }
 
   .homepage__content--01 > img,
   .homepage__content--02 > img {
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 0px;
     display: block;
+  }
+  .homepage__content--01 > img {
+    transform: translateX(-7%);
   }
 
   .homepage__text {
@@ -149,8 +159,7 @@
 /* 모바일 버전 (최대 767px) */
 @media (max-width: 767px) {
   .homepage__contents {
-    width: 100vw;
-    max-width: 360px;
+    width: 100%;
     margin: 0;
     height: auto;
     flex-direction: column;
@@ -165,7 +174,7 @@
     flex-direction: column;
     align-items: center;
     padding: 24px 16px;
-    gap: 16px;
+    gap: 48px;
   }
 
   .homepage__content--01,
@@ -176,7 +185,6 @@
   
   .homepage__content--01 {
     height: 352px;
-    height: auto;
     object-fit: cover;
     object-position: center;
     overflow: hidden;
@@ -186,21 +194,25 @@
     height: 362px;
   }
 
-  .homepage__content--01 > picture,
-  .homepage__content--02 > picture {
-    width: 100%;
+  .homepage__content--01 > img,
+  .homepage__content--02 > img {
     height: auto;
     margin: 0 auto;
   }
 
-  .homepage__content--01 > picture {
+  .homepage__content--01 > img {
     margin: 0 auto;
+    width: 385px;
     display: block;
     left: 5%;
     bottom: 0;
-    transform: translateX(-15%);
+    transform: translateX(-14%);
     max-width: none;
     z-index: 1;
+  }
+
+  .homepage__content--02 > img {
+    width: 320px;
   }
 
   .homepage__text {
