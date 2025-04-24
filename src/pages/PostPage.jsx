@@ -8,39 +8,55 @@ import PostModal from '../components/PostModal';
 import ModalItem from '../components/ModalItem';
 
 const PostPage = () => {
-  const [data, setData] = useState({});
-  const [headerLoad, setHeaderLoad] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [nextLoad, setNextLoad] = useState('');
-  const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(5);
-  const [showModal, setShowModal] = useState(false);
-  const [modalItem, setModalItem] = useState(false);
-  const { id } = useParams();
-  const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
-  const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
-  const targetRef = useRef(null);
-  const loadMore = () => {
-    setOffset((prev) => prev + 5);
-    setLimit((prev) => prev + 6);
-  };
+	const [data, setData] = useState({});
+	const [headerLoad, setHeaderLoad] = useState(true);
+	const [loading, setLoading] = useState(false);
+	const [messages, setMessages] = useState([]);
+	const [nextLoad, setNextLoad] = useState('');
+	const [offset, setOffset] = useState(0);
+	const [limit, setLimit] = useState(5);
+	const [showModal, setShowModal] = useState(false);
+	const [modalItem, setModalItem] = useState(false);
+	const { id } = useParams();
+	const { name, backgroundColor, backgroundImageURL, messageCount, recentMessages, topReactions } = data;
+	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
+	const targetRef = useRef(null);
+	const loadMore = () => {
+		setOffset((prev) => prev + 5);
+		if (limit > 6) {
+			setLimit(6);
+		}
+		setLimit((prev) => prev + 1);
+	};
 
-  console.log(messages);
-  // 롤링 페이퍼 기본 데이터 불러오기
-  useEffect(() => {
-    const postDataCall = async () => {
-      try {
-        const dataCall = await getRecipientsData(id);
-        setData(dataCall);
-      } catch (error) {
-        console.error('Post page 데이터 불러오기 실패!', error);
-      } finally {
-        setHeaderLoad(false);
-      }
-    };
-    postDataCall();
-  }, [id]);
+	const HandleModalClick = (e) => {
+		if (e.target.id === 'modal') {
+			setShowModal(false);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('click', HandleModalClick);
+		return () => {
+			window.removeEventListener('click', HandleModalClick);
+			console.log('removeEventListener');
+		};
+	}, [showModal]);
+
+	// 롤링 페이퍼 기본 데이터 불러오기
+	useEffect(() => {
+		const postDataCall = async () => {
+			try {
+				const dataCall = await getRecipientsData(id);
+				setData(dataCall);
+			} catch (error) {
+				console.error('Post page 데이터 불러오기 실패!', error);
+			} finally {
+				setHeaderLoad(false);
+			}
+		};
+		postDataCall();
+	}, [id]);
 
   // 해당 롤링 페이퍼에 보내진 메세지 가져오기
   useEffect(() => {
@@ -60,18 +76,18 @@ const PostPage = () => {
     fetchData();
   }, [id, offset, limit]);
 
-  // 무한 스크롤 IntersectionObserver
-  useEffect(() => {
-    if (loading && nextLoad) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            loadMore();
-          }
-        },
-        { threshold: 1 }
-      );
-      observer.observe(targetRef.current);
+	// 무한 스크롤 IntersectionObserver
+	useEffect(() => {
+		if (loading && nextLoad) {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					if (entries[0].isIntersecting) {
+						loadMore();
+					}
+				},
+				{ threshold: 0.8 }
+			);
+			observer.observe(targetRef.current);
 
       return () => {
         observer.disconnect();
@@ -91,7 +107,7 @@ const PostPage = () => {
           topReactions={topReactions}
         />
       )}
-
+      
       <section className={style.post__content} style={background}>
         <div className={style.card__wrap}>
           <Card userId={id} />
