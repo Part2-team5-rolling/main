@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createRecipient } from "../../api/rollingpaper-api";
 import styles from '../../styles/Layout/RollingPaper.module.css';
 
 const colors = ['#FBD46D', '#E5D4F4', '#BCE6FF', '#D4F4DD'];
 const images = ['/images/bg1.png', '/images/bg2.png', '/images/bg3.png', '/images/bg4.png'];
+
+const colorMap = {
+  '#FBD46D': 'beige',
+  '#E5D4F4': 'purple',
+  '#BCE6FF': 'blue',
+  '#D4F4DD': 'green',
+};
 
 const RollingPaperForm = () => {
   const [to, setTo] = useState("");
@@ -22,17 +30,33 @@ const RollingPaperForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (to.trim() === "") {
       setError(true);
       return;
     }
-    const background = activeTab === "color" ? selectedColor : selectedImage;
-    console.log("선택됨:", { to, background });
 
-    navigate('/post/:id');
+    let backgroundColor = null;
+
+    if (activeTab === "color") {
+      backgroundColor = colorMap[selectedColor];
+    } else {
+      alert("이미지 배경은 아직 지원하지 않아요! 컬러를 선택해 주세요.");
+      return;
+    }
+
+    try {
+      const response = await createRecipient({ name: to, backgroundColor });
+      const newId = response.id;
+
+      alert("롤링페이퍼가 성공적으로 생성되었습니다!");
+
+      navigate(`/post/${newId}`);
+    } catch (err) {
+      alert("롤링페이퍼 생성 중 오류가 발생했습니다.");
+    }
   };
 
   return (
@@ -44,6 +68,7 @@ const RollingPaperForm = () => {
         value={to}
         onChange={(e) => setTo(e.target.value)}
         onBlur={handleBlur}
+        maxLength={40}
         className={styles['rolling-paper__input']}
       />
       {error && (<span className={styles['rolling-paper__error']}>값을 입력해 주세요.</span>)}

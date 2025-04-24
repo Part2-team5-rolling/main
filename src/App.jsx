@@ -12,8 +12,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/list" element={<ListPage />} />
         <Route path='/post/:id' element={<PostPage />} />
-        <Route path='/post' element={<RollingPaperPage />} />
         <Route path='/post/:id/message' element={<SendMessagePage />} />
+        <Route path='/post' element={<RollingPaperPage />} />
       </Routes>
     </BrowserRouter>
   );
