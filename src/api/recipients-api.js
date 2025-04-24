@@ -27,3 +27,34 @@ export async function getRecipientsMessage(userId, offset, limit) {
 		console.error(error.message);
 	}
 }
+
+export async function deleteMessage(id) {
+  try {
+    const response = await fetch(`${BASE_URL}${TEAM}/messages/${id}/`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error(`삭제 실패: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('삭제 에러:', error);
+    throw error;
+  }
+}
+
+export async function deleteRecipient(id) {
+  try {
+    const response = await fetch(`${BASE_URL}${TEAM}/recipients/${id}/`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    return true;
+  } catch (error) {
+    console.error('삭제 실패:', error);
+    throw error;
+  }
+}
