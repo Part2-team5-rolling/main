@@ -6,6 +6,8 @@ function ListPage() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
+
   useEffect(() => {
     const loadList = async () => {
       try {
