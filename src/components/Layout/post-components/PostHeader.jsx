@@ -4,8 +4,31 @@ import TopReactions from './TopReactions';
 import arrow from '/icons/arrow_down.png';
 import addEmoji from '/icons/add.png';
 import share from '/icons/share.png';
+import ShareMenu from './ShareMenu';
+import { useRef, useState } from 'react';
+import { useEffect } from 'react';
 
 const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const shareButtonRef = useRef(null);
+
+	const handleClick = () => {
+		setIsOpen(!isOpen);
+	};
+
+	const handleOutsideClick = (event) => {
+		if (shareButtonRef.current && !shareButtonRef.current.contains(event.target)) {
+			setIsOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener('click', handleOutsideClick);
+		return () => {
+			document.removeEventListener('click', handleOutsideClick);
+		};
+	}, [isOpen]);
+
 	return (
 		<div className={style.wrap}>
 			<h2 className={style.user__name}>To. {userName}</h2>
@@ -29,16 +52,21 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 					</button>
 				)}
 
-				<button className={style.emoji__add} type='button'>
-					<img src={addEmoji} alt='이모지 추가' />
-					<span>추가</span>
-				</button>
-
-				<div className={style.divider}></div>
-
-				<button className={style.share} type='button'>
-					<img src={share} alt='공유하기' />
-				</button>
+				<ul className={style.button__list}>
+					<li>
+						<button className={style.emoji__add} type='button'>
+							<img src={addEmoji} alt='이모지 추가' />
+							<span>추가</span>
+						</button>
+					</li>
+					<li className={style.divider}></li>
+					<li className={style.share__list}>
+						<button className={style.share} type='button' ref={shareButtonRef} onClick={handleClick}>
+							<img src={share} alt='공유하기' />
+						</button>
+						{isOpen && <ShareMenu onClick={handleClick} />}
+					</li>
+				</ul>
 			</div>
 		</div>
 	);
