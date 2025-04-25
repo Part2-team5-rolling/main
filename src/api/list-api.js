@@ -12,7 +12,7 @@ const dummyData = {
       id: 1,
       title: '졸업 축하해요 🎓',
       recipient: '오사랑',
-      backgroundColor: '#FBD46D', // 배경색
+      backgroundColor: '#FFE2AD', // 배경색
       backgroundImageURL: '/images/graduation-bg.jpg', // 배경 이미지 URL
       recentMessages: [
         {

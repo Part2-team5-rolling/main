@@ -61,7 +61,7 @@ function ListPage() {
   // 배경색에 맞는 이미지 반환 함수
   const getBackgroundImage = (backgroundColor) => {
     const colorImageMap = {
-      '#FBD46D': '/public/images/yellow-backimg.png', // yellow
+      '#FFE2AD': '/public/images/yellow-backimg.png', // yellow
       '#E5D4F4': '/public/images/purple-backimg.png', // purple
       '#BCE6FF': '/public/images/blue-backimg.png',   // blue
       '#D4F4DD': '/public/images/green-backimg.png',  // green

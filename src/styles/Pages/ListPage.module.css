@@ -12,7 +12,8 @@
     gap: 16px;
 }
 
-.list-page__popular h2 {
+.list-page__popular h2,
+.list-page__recent h2 {
     font-weight: bold;
     font-size: 24px;
     line-height: 36px;
@@ -119,4 +120,47 @@
     font-size: 24px;
     line-height: 36px;
     text-align: left;
+}
+
+/* 태블릿 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) { 
+    .list-page {
+        padding: 0 24px;
+    }
+} 
+
+/* 모바일 (해상도 ~767px)*/ 
+@media all and (max-width:767px) {
+    .list-page {
+        padding: 0 20px;
+    }
+
+    .list-page__popular h2,
+    .list-page__recent h2 {
+        font-size: 20px;
+    }
+
+    .list-page__card  {
+        max-width: 208px;
+    }
+
+    .list-page__card .list-page__recipient {
+        font-size: 18px;
+    }
+
+    .list-page__emoji-container {
+        gap: 4px;
+    }
+
+    .list-page__profile-count {
+        font-size: 14px;
+    }
+
+    .list-page__box-emojicount {
+        padding: 6px 8px;
+    }
+
+    .list-page__num-emojicount {
+        font-size: 14px;
+    }
 }
