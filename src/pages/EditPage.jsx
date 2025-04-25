@@ -7,9 +7,8 @@ import Card from '../components/Card';
 import PostModal from '../components/PostModal';
 import ModalItem from '../components/ModalItem';
 import Header from '../components/common/Header';
-import ListPage from './ListPage';
 
-const PostPage = () => {
+const EditPage = () => {
   const [data, setData] = useState({});
   const [headerLoad, setHeaderLoad] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -25,8 +24,8 @@ const PostPage = () => {
   const targetRef = useRef(null);
   const navigate = useNavigate();
 
-// 메세지 삭제하기
 
+// 메세지 삭제하기
   const handleDeleteMessage = async (messageId) => {
     const confirmDelete = window.confirm('정말 이 메시지를 삭제할까요?');
     if (!confirmDelete) return;
@@ -52,7 +51,6 @@ const PostPage = () => {
   };
 
   // 롤링페이지 지우기
-
   const handleDeleteRollingPage = async (pageId) => {
     const confirmDelete = window.confirm('정말 이 롤링페이지를 삭제할까요?');
     if (!confirmDelete) return;
@@ -73,7 +71,6 @@ const PostPage = () => {
       alert('삭제 실패!');
     }
   };
-
 
 
   const loadMore = () => {
@@ -251,4 +248,4 @@ const PostPage = () => {
     </>
   )};
 
-export default PostPage;
+export default EditPage;
