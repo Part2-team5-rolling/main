@@ -7,6 +7,8 @@ import Card from '../components/Card';
 import PostModal from '../components/PostModal';
 import ModalItem from '../components/ModalItem';
 import Header from '../components/common/Header';
+import '../styles/EditPage.css'
+import deleteButtonImage from '../assets/edit-delete--card.png'
 
 const EditPage = () => {
   const [data, setData] = useState({});
@@ -160,26 +162,15 @@ const EditPage = () => {
           topReactions={topReactions}
         />
       )}
-  <button
-  onClick={(e) => {
-    e.stopPropagation(); // 카드 클릭 막기
-    handleDeleteRollingPage(id); // 해당 롤링페이지 삭제
-  }}
-  style={{
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    backgroundColor: 'red',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '4px 8px',
-    cursor: 'pointer',
-    zIndex: 9999,  // z-index를 크게 설정해서 버튼이 앞에 오도록 함
-  }}
->
-  삭제
-</button>
+          <button
+            className='button--delete-rolling-page'
+            onClick={(e) => {
+              e.stopPropagation(); // 카드 클릭 막기
+              handleDeleteRollingPage(id); // 해당 롤링페이지 삭제
+            }}
+          >
+            삭제하기
+          </button>
       <section className={style.post__content} style={background}>
         <div className={style.card__wrap}>
           {messageCount === 0 ? (
@@ -200,25 +191,16 @@ const EditPage = () => {
                     setModalItem(message);
                   }}
                 />
-                <button
+                <button className='button--delete-card'
                   onClick={(e) => {
                     e.stopPropagation(); // 카드 클릭 막기
                     handleDeleteMessage(message.id);
                   }}
-                  style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    backgroundColor: 'red',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    padding: '4px 8px',
-                    cursor: 'pointer',
-                    zIndex: 10,
-                  }}
                 >
-                  삭제
+                  <img
+                    src={deleteButtonImage}
+                    alt="카드 삭제"
+                  />
                 </button>
               </div>
             ))
