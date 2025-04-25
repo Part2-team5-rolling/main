@@ -43,10 +43,9 @@ const ShareMenu = ({ onClick, commentCount }) => {
   };
 
   useEffect(() => {
-    Kakao.cleanup();
     const appKey = import.meta.env.VITE_KAKAO_APP_KEY; 
     Kakao.init(appKey);
-    console.log(Kakao.isInitialized());
+    return Kakao.cleanup();
   }, []);
 
 	return (
