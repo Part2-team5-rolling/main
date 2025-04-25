@@ -48,6 +48,13 @@
 	width: 100%;
 }
 
+.button__list {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+}
+
 .emoji__add {
 	cursor: pointer;
 	background-color: rgba(255, 255, 255, 1);
@@ -70,6 +77,12 @@
 	font-weight: 500;
 	line-height: 24px;
 	font-family: 'Pretendard-Regular';
+}
+
+.share__list {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 
 .share {
@@ -96,6 +109,9 @@
 @media (max-width: 1248px) {
 	.wrap {
 		margin: 13px 24px;
+	}
+	.share__text__wrap {
+		right: 24px;
 	}
 }
 
