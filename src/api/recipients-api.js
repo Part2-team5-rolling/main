@@ -28,33 +28,39 @@ export async function getRecipientsMessage(userId, offset, limit) {
 	}
 }
 
-export async function deleteMessage(id) {
+export async function deleteMessage(messageId) {
   try {
-    const response = await fetch(`${BASE_URL}${TEAM}/messages/${id}/`, {
+    const response = await fetch(`${BASE_URL}${TEAM}/messages/${messageId}/`, {
       method: 'DELETE',
     });
-    if (!response.ok) {
-      throw new Error(`삭제 실패: ${response.status}`);
+
+    if (response.status === 204) {
+      console.log('메시지 삭제 성공');
+      return true;
+    } else {
+      console.warn('메시지 삭제 실패: ', response.status);
     }
   } catch (error) {
-    console.error('삭제 에러:', error);
-    throw error;
+    console.error('삭제 요청 에러: ', error);
   }
+  return false;
 }
 
-export async function deleteRecipient(id) {
+
+export async function deleteRecipient(recipientId) {
   try {
-    const response = await fetch(`${BASE_URL}${TEAM}/recipients/${id}/`, {
+    const response = await fetch(`${BASE_URL}${TEAM}/recipients/${recipientId}/`, {
       method: 'DELETE',
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
+    if (response.status === 204) {
+      console.log('Recipient 삭제 성공');
+      return true;
+    } else {
+      console.warn('Recipient 삭제 실패: ', response.status);
     }
-
-    return true;
   } catch (error) {
-    console.error('삭제 실패:', error);
-    throw error;
+    console.error('삭제 요청 에러: ', error);
   }
+  return false;
 }
