@@ -1,0 +1,37 @@
+.share__text__wrap {
+	width: 140px;
+	height: 120px;
+	position: absolute;
+	top: 120px;
+	right: auto;
+	padding: 10px 1px;
+	background-color: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(204, 204, 204, 1);
+	border-radius: 8px;
+	z-index: 1;
+	list-style: none;
+}
+
+.share__text__wrap li {
+	padding: 12px 16px;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 26px;
+	font-family: 'Pretendard-Regular';
+	cursor: pointer;
+}
+
+.share__text__wrap li:first-child {
+	border-bottom: 1px solid rgba(238, 238, 238, 1);
+}
+
+.share__text__wrap li:hover {
+	background-color: rgba(246, 246, 246, 1);
+}
+
+.divider {
+	width: 1px;
+	height: 28px;
+	margin: 4px 13px;
+	background-color: rgba(238, 238, 238, 1);
+}
