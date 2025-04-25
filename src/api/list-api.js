@@ -4,7 +4,7 @@ const BASE_URL = 'https://rolling-api.vercel.app';
  * 더미 롤링페이퍼 목록 데이터
  */
 const dummyData = {
-  count: 3,
+  count: 6,  // 더미 데이터 갯수를 6으로 변경
   next: null,
   previous: null,
   results: [
@@ -80,7 +80,76 @@ const dummyData = {
           sender: '이한빈',
           profileImageURL: null,
           relationship: '지인',
-          reactions: ['👍', '😄',], // 이모지 추가
+          reactions: ['👍', '😄'], // 이모지 추가
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: '결혼 축하해요 💍',
+      recipient: '정현수',
+      backgroundColor: '#D4F4DD',
+      backgroundImageURL: '/images/wedding-bg.jpg',
+      recentMessages: [
+        {
+          id: 108,
+          sender: '박정우',
+          profileImageURL: '/public/images/profile2.png',
+          relationship: '친구',
+          reactions: ['🎉', '💍', '👰'], // 이모지 추가
+        },
+        {
+          id: 109,
+          sender: '김지혜',
+          profileImageURL: null,
+          relationship: '가족',
+          reactions: ['🥰', '😍'], // 이모지 추가
+        },
+      ],
+    },
+    {
+      id: 5,
+      title: '새해 복 많이 받으세요 🎊',
+      recipient: '김윤아',
+      backgroundColor: '#D4F4DD',
+      backgroundImageURL: '/images/newyear-bg.jpg',
+      recentMessages: [
+        {
+          id: 110,
+          sender: '이준호',
+          profileImageURL: '/public/images/profile2.png',
+          relationship: '친구',
+          reactions: ['🎉', '🍾', '🥂'], // 이모지 추가
+        },
+        {
+          id: 111,
+          sender: '송민재',
+          profileImageURL: null,
+          relationship: '동료',
+          reactions: ['😊', '🥳'], // 이모지 추가
+        },
+      ],
+    },
+    {
+      id: 6,
+      title: '축하합니다 🎉',
+      recipient: '최지훈',
+      backgroundColor: '#BCE6FF',
+      backgroundImageURL: '/images/celebration-bg.jpg',
+      recentMessages: [
+        {
+          id: 112,
+          sender: '한상욱',
+          profileImageURL: '/public/images/profile1.png',
+          relationship: '동료',
+          reactions: ['👏', '😄', '🥳'], // 이모지 추가
+        },
+        {
+          id: 113,
+          sender: '박현지',
+          profileImageURL: '/public/images/profile3.png',
+          relationship: '친구',
+          reactions: ['💖', '🥰'], // 이모지 추가
         },
       ],
     },

@@ -21,14 +21,23 @@
 }
 
 .list-page__card-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: row;
+}
+
+.list-page__card-wrapper {
+    display: flex; /* 카드들을 가로로 나열 */
+    transition: transform 0.3s ease; /* 슬라이드 이동 애니메이션 */
     gap: 20px;
 }
 
 .list-page__card {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     gap: 12px;
     width: 275px;
     padding: 30px 24px 20px;
@@ -37,6 +46,7 @@
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
     background-repeat: no-repeat;
+    box-sizing: border-box;
 }
 
 .list-page__card .list-page__recipient {
