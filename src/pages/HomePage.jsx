@@ -40,7 +40,9 @@ function HomePage() {
             <img className='homepage__image' src={mainImage02} alt='메인 이미지' />
           </article>
 
-          <Button onClick={() => goToPage('/list')} className='button--primary'>구경해보기</Button>
+          <div className='homepage__box--container'>
+            <Button onClick={() => goToPage('/list')} className='button--primary'>구경해보기</Button>
+          </div>
         </section>
       </div>
     )
