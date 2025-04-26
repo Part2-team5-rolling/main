@@ -64,7 +64,7 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 						<button className={style.share} type='button' ref={shareButtonRef} onClick={handleClick}>
 							<img src={share} alt='공유하기' />
 						</button>
-						{isOpen && <ShareMenu onClick={handleClick} />}
+						{isOpen && <ShareMenu onClick={handleClick} commentCount={messageCount} />}
 					</li>
 				</ul>
 			</div>
