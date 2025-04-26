@@ -117,9 +117,14 @@ const EditPage = () => {
     const fetchData = async () => {
       try {
         const { next, results } = await getRecipientsMessage(id, offset, limit);
-        const addNewMessage = [...messages, ...results];
-        const filterMessage = addNewMessage.filter((item, i, arr) => i === arr.findIndex((obj) => obj.id === item.id));
-        setMessages(filterMessage);
+        if (offset === 0) {
+          // 초기화 상태면 덮어쓰기
+          setMessages(results);
+        } else {
+          const addNewMessage = [...messages, ...results];
+          const filterMessage = addNewMessage.filter((item, i, arr) => i === arr.findIndex((obj) => obj.id === item.id));
+          setMessages(filterMessage);
+        }
         setNextLoad(next);
       } catch (error) {
         console.error('messages 불러오기 실패', error);
