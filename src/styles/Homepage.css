@@ -154,7 +154,7 @@ body {
     margin: 0 0 12px 0;
   }
 
-  .button--primary {
+.homepage__contents > Button {
     width: calc(100% - 48px);
     max-width: 720px;
     box-sizing: border-box;
