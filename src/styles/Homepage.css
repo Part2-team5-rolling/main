@@ -87,6 +87,10 @@ body {
   letter-spacing: -0.01em;
 }
 
+.homepage__box--container {
+  width: 280px;
+}
+
 /* 태블릿 버전 (768px ~ 1023px) */
 @media (max-width: 1023px) {
   .homepage__content {
@@ -150,7 +154,7 @@ body {
     margin: 0 0 12px 0;
   }
 
-  .button--primary {
+.homepage__contents > Button {
     width: calc(100% - 48px);
     max-width: 720px;
     box-sizing: border-box;
