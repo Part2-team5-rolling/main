@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import style from '../styles/Card.module.css';
 import plus from '/icons/plus.png';
+import parser from 'html-react-parser';
 
 const RELATIONSHIP_COLORS = {
 	가족: {
@@ -26,6 +27,8 @@ const Card = ({ userId, id, sender, relationship, profileImg, cardFont, content,
 	const textIndex = date.indexOf('T', 0);
 	const createdDate = date.slice(0, textIndex);
 	const relationshipColor = RELATIONSHIP_COLORS[relationship];
+	const parserContent = parser(String(content));
+	console.log(content);
 
 	return (
 		<>
@@ -53,7 +56,7 @@ const Card = ({ userId, id, sender, relationship, profileImg, cardFont, content,
 								</div>
 							</div>
 						</div>
-						<p className={style.content}>{content}</p>
+						<div className={style.content}>{parserContent}</div>
 						<p className={style.createdAt}>{createdDate}</p>
 					</div>
 				</div>

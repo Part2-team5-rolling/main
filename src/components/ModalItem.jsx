@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import style from '../styles/ModalItem.module.css';
+import parser from 'html-react-parser';
 
 const RELATIONSHIP_COLORS = {
 	가족: {
@@ -25,6 +26,7 @@ const ModalItem = ({ sender, relationship, profileImg, cardFont, content, create
 	const textIndex = date.indexOf('T', 0);
 	const createdDate = date.slice(0, textIndex);
 	const relationshipColor = RELATIONSHIP_COLORS[relationship];
+	const parserContent = parser(String(content));
 
 	useEffect(() => {
 		// 모달이 열릴 때 스크롤을 고정하는 코드
@@ -57,7 +59,7 @@ const ModalItem = ({ sender, relationship, profileImg, cardFont, content, create
 
 				<p className={style.send__date}>{createdDate}</p>
 			</div>
-			<p className={style.content}>{content}</p>
+			<div className={style.content}>{parserContent}</div>
 			<button className={style.closeBtn} type='button' onClick={onClose}>
 				확인
 			</button>

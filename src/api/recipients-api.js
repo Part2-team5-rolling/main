@@ -27,3 +27,42 @@ export async function getRecipientsMessage(userId, offset, limit) {
 		console.error(error.message);
 	}
 }
+
+export async function getRecipientsReactions(id) {
+	try {
+		const response = await fetch(`${BASE_URL}${TEAM}/recipients/${id}/reactions/`);
+		if (!response.ok) {
+			throw new Error(`HTTP error: ${response.status}`);
+		}
+		const data = await response.json();
+
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+export async function postRecipientsReactions(id, { emoji, type }) {
+	if (!emoji || !type) {
+		return;
+	}
+	try {
+		const response = await fetch(`${BASE_URL}${TEAM}/recipients/${id}/reactions/`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				emoji,
+				type,
+			}),
+		});
+		if (!response.ok) {
+			throw new Error(`HTTP error: ${response.status}`);
+		}
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
+}
