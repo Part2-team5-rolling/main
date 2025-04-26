@@ -5,14 +5,15 @@ import { fetchRollingList } from '../api/list-api';
 function ListPage() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
-
-
+  const [currentIndex, setCurrentIndex] = useState(0); // 초기값을 0으로 설정
 
   useEffect(() => {
     const loadList = async () => {
       try {
         const data = await fetchRollingList(1); // 페이지 번호를 API 명세에 맞게 넘겨줌
-        setList(data.results); // API 응답의 results 사용
+        // 최근 메시지 수를 기준으로 내림차순 정렬
+        const sortedList = data.results.sort((a, b) => b.recentMessages.length - a.recentMessages.length);
+        setList(sortedList); // 정렬된 데이터 사용
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
       } finally {
@@ -69,14 +70,39 @@ function ListPage() {
     return colorImageMap[backgroundColor] || ''; // 매칭되지 않으면 기본값 ''
   };
 
+  // 슬라이드를 왼쪽으로 이동하는 함수
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => {
+      // 첫 번째 카드에서 이전 버튼을 누르면 이동하지 않음
+      return prevIndex === 0 ? prevIndex : prevIndex - 1;
+    });
+  };
+
+  // 슬라이드를 오른쪽으로 이동하는 함수
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => {
+      // 마지막 카드에서 다음 버튼을 누르면 이동하지 않음
+      return prevIndex === list.length - 1 ? prevIndex : prevIndex + 1;
+    });
+  };
+
   return (
     <div className={styles['list-page']}>
       <div className={styles['list-page__popular']}>
         <h2>인기 롤링 페이퍼 🔥</h2>
+        <div className={styles['list-page__card-container']}>
         {loading ? (
           <p>로딩 중...</p>
         ) : (
-          <div className={styles['list-page__card-container']}>
+          <div
+              className={styles['list-page__card-wrapper']}
+              style={{
+                width: `calc(295px * ${list.length})`, // 부모의 너비를 카드 개수에 맞게 설정
+                transform: `translateX(-${currentIndex * 295}px)`, // 한 번에 1개의 카드만 이동
+                transition: 'transform 0.5s ease', // 애니메이션 항상 적용
+                overflow: 'hidden',
+              }}
+            >
             {/* list.map을 사용하여 각 롤링 페이퍼 항목을 렌더링 */}
             {list.map((item) => (
               <div
@@ -130,7 +156,18 @@ function ListPage() {
             ))}
           </div>
         )}
-      </div>
+        </div>
+        </div>
+        {/* 이전, 다음 버튼 추가 */}
+        <div className={styles['carousel-buttons-container']}>
+        <button onClick={prevSlide} className={styles['carousel-button']} disabled={currentIndex === 0}>
+          ❮
+        </button>
+        <button onClick={nextSlide} className={styles['carousel-button']} disabled={currentIndex === list.length - 4}>
+          ❯
+        </button>
+        </div>
+      
       <div className={styles['list-page__recent']}>
         <h2>최근에 만든 롤링 페이퍼 ⭐️️</h2>
       </div>
