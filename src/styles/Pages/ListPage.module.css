@@ -21,14 +21,13 @@
 }
 
 .list-page__card-container {
-    width: 100%;
     position: relative;
+    width: 100%;
     overflow: hidden;
-    display: flex;
-    flex-direction: row;
 }
 
 .list-page__card-wrapper {
+    width: 100%;
     display: flex; /* 카드들을 가로로 나열 */
     transition: transform 0.3s ease; /* 슬라이드 이동 애니메이션 */
     gap: 20px;
@@ -130,6 +129,44 @@
     font-size: 24px;
     line-height: 36px;
     text-align: left;
+}
+
+/* Carousel */
+.carousel-buttons-container {
+    width: 1160px;
+    position: absolute;
+    top: 242px;;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    background-color: rgba(0,0,0,0,2)
+  }
+
+.carousel-button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+    border-radius: 50%;
+}
+
+.carousel-button:first-child {
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+}
+
+.carousel-button:last-child {
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+}
+
+.carousel-button:disabled {
+    display: none;
 }
 
 /* 태블릿 (해상도 768px ~ 1023px)*/ 
