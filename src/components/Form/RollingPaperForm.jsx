@@ -3,14 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { createRecipient } from "../../api/rollingpaper-api";
 import styles from '../../styles/Layout/RollingPaper.module.css';
 
-const colors = ['#FBD46D', '#E5D4F4', '#BCE6FF', '#D4F4DD'];
-const images = ['/images/bg1.png', '/images/bg2.png', '/images/bg3.png', '/images/bg4.png'];
+const colors = ['#FFE2AD', '#ECD9FF', '#B1E4FF', '#D0F5C3'];
+const images = [
+  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg1.png',
+  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg2.png',
+  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg3.png',
+  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg4.png',
+];
 
 const colorMap = {
-  '#FBD46D': 'beige',
-  '#E5D4F4': 'purple',
-  '#BCE6FF': 'blue',
-  '#D4F4DD': 'green',
+  '#FFE2AD': 'beige',
+  '#ECD9FF': 'purple',
+  '#B1E4FF': 'blue',
+  '#D0F5C3': 'green',
 };
 
 const RollingPaperForm = () => {
@@ -19,7 +24,6 @@ const RollingPaperForm = () => {
   const [activeTab, setActiveTab] = useState("color");
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedImage, setSelectedImage] = useState("");
-
   const navigate = useNavigate();
 
   const handleBlur = () => {
@@ -39,22 +43,28 @@ const RollingPaperForm = () => {
     }
 
     let backgroundColor = null;
+    let backgroundImageURL = null;
 
     if (activeTab === "color") {
       backgroundColor = colorMap[selectedColor];
-    } else {
-      alert("이미지 배경은 아직 지원하지 않아요! 컬러를 선택해 주세요.");
-      return;
+    } else if (activeTab === "image") {
+      backgroundImageURL = selectedImage;
     }
 
     try {
-      const response = await createRecipient({ name: to, backgroundColor });
+      const recipientData = {
+        name: to,
+        backgroundColor: backgroundColor,
+        backgroundImageURL: backgroundImageURL
+      };
+
+      const response = await createRecipient(recipientData);
       const newId = response.id;
 
       alert("롤링페이퍼가 성공적으로 생성되었습니다!");
-
       navigate(`/post/${newId}`);
     } catch (err) {
+      console.error("에러 내용:", err);
       alert("롤링페이퍼 생성 중 오류가 발생했습니다.");
     }
   };
