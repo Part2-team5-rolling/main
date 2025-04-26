@@ -37,3 +37,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.header__box--container {
+  width: 157px;
+}

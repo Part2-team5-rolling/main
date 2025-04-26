@@ -12,7 +12,8 @@
     gap: 16px;
 }
 
-.list-page__popular h2 {
+.list-page__popular h2,
+.list-page__recent h2 {
     font-weight: bold;
     font-size: 24px;
     line-height: 36px;
@@ -35,6 +36,7 @@
     border-radius: 16px;
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
+    background-repeat: no-repeat;
 }
 
 .list-page__card .list-page__recipient {
@@ -75,6 +77,9 @@
 }
 
 .list-page__card .list-page__count {
+    display: block;
+    padding-bottom: 43px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
     color: #3a3a3a;
 }
 
@@ -85,17 +90,23 @@
 .list-page__emoji-container {
     display: flex;
     gap: 8px;
+    padding-top: 4px;
     font-size: 14px;
 }
 
-.list-page__emojicount {
+.list-page__box-emojicount {
     display: flex;
-    gap: 4px;
+    gap: 2px;
+    padding: 8px 12px;
     align-items: center;
+    border-radius: 32px;
+    background-color: rgba(0,0,0,0.54);
 }
 
-.list-page__emojicount2 {
-    font-weight: bold;
+.list-page__num-emojicount {
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
 }
 
 .list-page__recent {
@@ -109,4 +120,47 @@
     font-size: 24px;
     line-height: 36px;
     text-align: left;
+}
+
+/* 태블릿 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) { 
+    .list-page {
+        padding: 0 24px;
+    }
+} 
+
+/* 모바일 (해상도 ~767px)*/ 
+@media all and (max-width:767px) {
+    .list-page {
+        padding: 0 20px;
+    }
+
+    .list-page__popular h2,
+    .list-page__recent h2 {
+        font-size: 20px;
+    }
+
+    .list-page__card  {
+        max-width: 208px;
+    }
+
+    .list-page__card .list-page__recipient {
+        font-size: 18px;
+    }
+
+    .list-page__emoji-container {
+        gap: 4px;
+    }
+
+    .list-page__profile-count {
+        font-size: 14px;
+    }
+
+    .list-page__box-emojicount {
+        padding: 6px 8px;
+    }
+
+    .list-page__num-emojicount {
+        font-size: 14px;
+    }
 }
