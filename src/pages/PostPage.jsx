@@ -6,6 +6,7 @@ import style from '../styles/PostPage.module.css';
 import Card from '../components/Card';
 import PostModal from '../components/PostModal';
 import ModalItem from '../components/ModalItem';
+import Header from '../components/common/Header';
 
 const PostPage = () => {
 	const [data, setData] = useState({});
@@ -24,7 +25,6 @@ const PostPage = () => {
 	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
 	const targetRef = useRef(null);
 	const renderRef = useRef(true);
-	console.log(backgroundColor);
 
 	const loadMore = () => {
 		setOffset((prev) => prev + 5);
@@ -118,6 +118,7 @@ const PostPage = () => {
 
 	return (
 		<>
+			<Header />
 			{headerLoad ? (
 				<h1>로딩중...</h1>
 			) : (
