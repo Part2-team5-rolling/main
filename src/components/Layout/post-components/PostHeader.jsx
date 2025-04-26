@@ -7,18 +7,57 @@ import share from '/icons/share.png';
 import ShareMenu from './ShareMenu';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
+import EmojiPicker from 'emoji-picker-react';
+import EmojiDropDown from './EmojiDropDown';
 
-const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => {
+const PostHeader = ({
+	userId,
+	userName,
+	messageCount,
+	recentMessage,
+	reactionCount,
+	topReactions,
+	setSelectedEmoji,
+}) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isEmojiOpen, setIsEmojiOpen] = useState(false);
+	const [isMoreEmoji, setIsMoreEmoji] = useState(false);
+
+	const emojiMoreRef = useRef(null);
+	const emojiPickerRef = useRef(null);
 	const shareButtonRef = useRef(null);
 
 	const handleClick = () => {
 		setIsOpen(!isOpen);
 	};
 
+	const handleEmojiOpen = () => {
+		setIsEmojiOpen(!isEmojiOpen);
+	};
+
+	const handleEmojiClick = (emojiData) => {
+		const newReaction = {
+			emoji: emojiData.emoji,
+			type: 'increase',
+		};
+		setSelectedEmoji(newReaction);
+	};
+
+	const handleMoreEmoji = () => {
+		setIsMoreEmoji(!isMoreEmoji);
+	};
+
 	const handleOutsideClick = (event) => {
 		if (shareButtonRef.current && !shareButtonRef.current.contains(event.target)) {
 			setIsOpen(false);
+		}
+
+		if (emojiMoreRef.current && !emojiMoreRef.current.contains(event.target)) {
+			setIsMoreEmoji(false);
+		}
+
+		if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
+			setIsEmojiOpen(false);
 		}
 	};
 
@@ -27,7 +66,7 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 		return () => {
 			document.removeEventListener('click', handleOutsideClick);
 		};
-	}, [isOpen]);
+	}, [isOpen, isEmojiOpen, isMoreEmoji]);
 
 	return (
 		<div className={style.wrap}>
@@ -42,22 +81,34 @@ const PostHeader = ({ userName, messageCount, recentMessage, topReactions }) => 
 
 				<div className={`${style.divider} ${style.first__divider}`}></div>
 
-				<TopReactions topReactions={topReactions} />
+				<TopReactions id={userId} topReactions={topReactions} />
 
-				{!messageCount ? (
+				{!reactionCount ? (
 					''
 				) : (
-					<button className={style.emoji__total} type='button'>
-						<img src={arrow} alt='이모지 더 보기' />
-					</button>
+					<div className={style.reaction__wrap}>
+						<button className={style.emoji__total} type='button' onClick={handleMoreEmoji} ref={emojiMoreRef}>
+							<img src={arrow} alt='이모지 더 보기' />
+						</button>
+						{isMoreEmoji && <EmojiDropDown id={userId} />}
+					</div>
 				)}
 
 				<ul className={style.button__list}>
-					<li>
-						<button className={style.emoji__add} type='button'>
+					<li className={style.emoji__add__list}>
+						<button className={style.emoji__add} type='button' onClick={handleEmojiOpen} ref={emojiPickerRef}>
 							<img src={addEmoji} alt='이모지 추가' />
 							<span>추가</span>
 						</button>
+						{isEmojiOpen && (
+							<div className={style.emoji__picker}>
+								<EmojiPicker
+									width={307}
+									height={393}
+									onEmojiClick={(emojiData, event) => handleEmojiClick(emojiData, event)}
+								/>
+							</div>
+						)}
 					</li>
 					<li className={style.divider}></li>
 					<li className={style.share__list}>

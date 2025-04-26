@@ -1,0 +1,39 @@
+.emoji__dropdown {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 8px 10px;
+	position: absolute;
+	top: 120px;
+	right: auto;
+	background-color: rgba(255, 255, 255, 1);
+	padding: 24px;
+	border: 1px solid rgba(182, 182, 182, 1);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+	border-radius: 8px;
+}
+
+.emoji__wrap {
+	padding: 8px 12px;
+	border-radius: 32px;
+	background-color: rgba(0, 0, 0, 0.54);
+	width: 66px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2px;
+}
+
+.emoji__wrap:first-child {
+	margin-left: 0;
+}
+
+.emoji__count {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	font-family: 'Pretendard-Regular';
+	color: rgba(255, 255, 255, 1);
+	text-align: end;
+}
