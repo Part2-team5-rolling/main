@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'; // 추가
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
+import Button from '../components/common/Button';
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -108,6 +109,10 @@ function ListPage() {
   // 카드 클릭 시 상세페이지 이동
   const handleCardClick = (id) => {
     navigate(`/post/${id}`);
+  };
+
+  const goToPage = (path) => {
+    navigate(path);
   };
 
   return (
@@ -271,7 +276,11 @@ function ListPage() {
           </button>
         </div>
       </div>
-
+      <div className={styles['list-page__footer-buttons']}>
+        <Button onClick={() => goToPage('/post')} className="button--primary">
+          나도 만들어보기
+        </Button>
+      </div>
     </div>
   );
 }
