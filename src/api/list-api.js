@@ -156,7 +156,7 @@ const dummyData = {
   ],
 };
 
-// ✅ 개발 중에는 true, 실제 API 연동 시 false 로 전환
+// 개발 중에는 true, 실제 API 연동 시 false 로 전환
 const useMock = true;
 
 /**
@@ -166,10 +166,10 @@ const useMock = true;
  */
 export const fetchRollingList = async (page = 1) => {
   if (useMock) {
-    console.log('✅ Dummy data fetch 시작');
+    console.log('!CHECK! Dummy data fetch 시작');
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log('✅ Dummy data fetch 완료');
+        console.log('!CHECK! Dummy data fetch 완료');
         resolve(dummyData);
       }, 500);
     });

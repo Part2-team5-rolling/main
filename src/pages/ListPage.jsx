@@ -19,7 +19,7 @@ function ListPage() {
       setList([]);
       try {
         const data = await fetchRollingList(1);
-        console.log('Data fetched:', data); // ✨ 여기 추가!
+        console.log('Data fetched:', data);
         const sortedList = data.results.sort((a, b) => b.recentMessages.length - a.recentMessages.length);
         setList(sortedList);
       } catch (error) {
