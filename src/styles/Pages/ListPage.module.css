@@ -46,6 +46,7 @@
     box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
     background-repeat: no-repeat;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .list-page__card .list-page__recipient {
