@@ -276,7 +276,7 @@ function ListPage() {
           </button>
         </div>
       </div>
-      <div className={styles['list-page__footer-buttons']}>
+      <div className={styles['list-page__buttons']}>
         <Button onClick={() => goToPage('/post')} className="button--primary">
           나도 만들어보기
         </Button>
