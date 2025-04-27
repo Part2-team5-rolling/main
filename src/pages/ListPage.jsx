@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; // 추가
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
+import Header from '../components/common/Header';
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -111,6 +112,7 @@ function ListPage() {
 
   return (
     <div className={styles['list-page']}>
+      <Header />
 
       {/* 인기 롤링 페이퍼 */}
       <div className={styles['list-page__popular']}>
