@@ -1,28 +1,37 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function ListPage() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0); // 초기값을 0으로 설정
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
+    console.log('ListPage useEffect triggered!');
+    
     const loadList = async () => {
+      setLoading(true);
+      setList([]);
       try {
-        const data = await fetchRollingList(1); // 페이지 번호를 API 명세에 맞게 넘겨줌
-        // 최근 메시지 수를 기준으로 내림차순 정렬
+        const data = await fetchRollingList(1);
+        console.log('Data fetched:', data); // ✨ 여기 추가!
         const sortedList = data.results.sort((a, b) => b.recentMessages.length - a.recentMessages.length);
-        setList(sortedList); // 정렬된 데이터 사용
+        setList(sortedList);
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
+        setList([]);
       } finally {
         setLoading(false);
       }
     };
-
+  
     loadList();
-  }, []);
+  }, [location.pathname]);
 
   // 이모지 갯수를 계산하는 함수
   const getEmojiCount = (reactions) => {
@@ -92,8 +101,10 @@ function ListPage() {
         <h2>인기 롤링 페이퍼 🔥</h2>
         <div className={styles['list-page__card-container']}>
         {loading ? (
-          <p>로딩 중...</p>
-        ) : (
+            <p>로딩 중...</p>
+          ) : list.length === 0 ? (
+            <p>불러올 롤링페이퍼가 없습니다.</p>
+          ) : (
           <div
               className={styles['list-page__card-wrapper']}
               style={{
@@ -109,13 +120,14 @@ function ListPage() {
               key={item.id}
               className={styles['list-page__card']}
               style={{
-                backgroundColor: item.backgroundColor || 'white', // 배경 색상
-                backgroundImage: getBackgroundImage(item.backgroundColor) 
-                  ? `url(${getBackgroundImage(item.backgroundColor)})` // 배경 이미지
-                  : 'none', // 배경 이미지 없으면 none
-                backgroundSize: '50%', // 무조건 50% 크기로 설정
-                backgroundPosition: 'bottom right', // 무조건 bottom right 위치로 설정
+                backgroundColor: item.backgroundColor || 'white',
+                backgroundImage: getBackgroundImage(item.backgroundColor)
+                  ? `url(${getBackgroundImage(item.backgroundColor)})`
+                  : 'none',
+                backgroundSize: '50%',
+                backgroundPosition: 'bottom right',
               }}
+              onClick={() => navigate(`/post/${item.id}`)}
             >
                 <p className={styles['list-page__recipient']}>To. {item.recipient}</p> {/* 수신자 이름 표시 */}
 

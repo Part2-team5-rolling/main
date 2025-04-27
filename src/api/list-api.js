@@ -166,9 +166,10 @@ const useMock = true;
  */
 export const fetchRollingList = async (page = 1) => {
   if (useMock) {
-    // ✨ 더미 데이터 반환
+    console.log('✅ Dummy data fetch 시작');
     return new Promise((resolve) => {
       setTimeout(() => {
+        console.log('✅ Dummy data fetch 완료');
         resolve(dummyData);
       }, 500);
     });
