@@ -17,7 +17,7 @@ function ListPage() {
   useEffect(() => {
     const loadList = async () => {
       try {
-        const data = await fetchRollingList(1); // API를 사용하여 데이터를 가져옵니다.
+        const data = await fetchRollingList(); // 모든 데이터를 가져옵니다.
         setList(data.results); // 가져온 데이터 저장
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
@@ -29,11 +29,15 @@ function ListPage() {
     loadList();
   }, [location.pathname]); // 페이지 이동 시마다 다시 불러오기
 
-  // 인기 롤링 페이퍼 정렬 (메시지 많은 순)
-  const popularList = [...list].sort((a, b) => b.recentMessages.length - a.recentMessages.length);
+  // 인기 롤링 페이퍼 정렬 (메시지 많은 순, 최대 8개)
+  const popularList = [...list]
+    .sort((a, b) => b.recentMessages.length - a.recentMessages.length)
+    .slice(0, 8); // 최대 8개만 추출
 
-  // 최근에 만든 롤링 페이퍼 정렬 (id 내림차순)
-  const recentList = [...list].sort((a, b) => b.id - a.id);
+  // 최근에 만든 롤링 페이퍼 정렬 (생성 시간 기준, 최대 8개)
+  const recentList = [...list]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // createdAt을 기준으로 정렬
+    .slice(0, 8); // 최대 8개만 추출
 
   // 이모지 갯수를 계산하는 함수
   const getEmojiCount = (reactions) => {
