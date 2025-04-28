@@ -101,6 +101,7 @@ function ListPage() {
         backgroundImage: `url(${backgroundImageURL})`,
         backgroundSize: '100%',
         backgroundPosition: 'center',
+        className: `${styles['imgOn']}`,  // backgroundImageURL이 있을 때 imgOn 클래스 추가
       };
     }
 
@@ -173,7 +174,7 @@ function ListPage() {
               {popularList.map((item) => (
                 <div
                   key={item.id}
-                  className={styles['list-page__card']}
+                  className={`${styles['list-page__card']} ${item.backgroundImageURL ? styles['imgOn'] : ''}`}  // imgOn 클래스를 조건부로 추가
                   style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
@@ -245,7 +246,7 @@ function ListPage() {
               {recentList.map((item) => (
                 <div
                   key={item.id}
-                  className={styles['list-page__card']}
+                  className={`${styles['list-page__card']} ${item.backgroundImageURL ? styles['imgOn'] : ''}`}  // imgOn 클래스를 조건부로 추가
                   style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
