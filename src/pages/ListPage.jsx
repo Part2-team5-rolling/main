@@ -99,7 +99,7 @@ function ListPage() {
     if (backgroundImageURL) {
       return {
         backgroundImage: `url(${backgroundImageURL})`,
-        backgroundSize: '100%',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
         className: `${styles['imgOn']}`,  // backgroundImageURL이 있을 때 imgOn 클래스 추가
       };
