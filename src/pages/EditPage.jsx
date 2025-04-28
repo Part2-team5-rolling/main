@@ -2,12 +2,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import PostHeader from '../components/Layout/post-components/PostHeader';
 import { getRecipientsData, getRecipientsMessage, deleteMessage, deleteRecipient  } from '../api/recipients-api';
 import { useEffect, useRef, useState } from 'react';
-import style from '../styles/PostPage.module.css';
+import style from '../styles/EditPage.module.css';
 import Card from '../components/Card';
 import PostModal from '../components/PostModal';
 import ModalItem from '../components/ModalItem';
 import Header from '../components/common/Header';
-import '../styles/EditPage.css'
 import deleteButtonImage from '../assets/edit-delete--card.png'
 
 const EditPage = () => {
