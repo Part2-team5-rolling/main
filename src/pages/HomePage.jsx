@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import mainImage01 from '../assets/home-content-01.png';
 import mainImage02 from '../assets/home-content-02.png';
 import styles from '../styles/HomePage.module.css';
+import buttonStyles from '../styles/Button.module.css';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function HomePage() {
         </article>
 
         <div className={styles.homepage__box__container}>
-          <Button onClick={() => goToPage('/list')} className={styles.button__primary}>구경해보기</Button>
+          <Button onClick={() => goToPage('/list')} className={buttonStyles.button__primary}>구경해보기</Button>
         </div>
       </section>
     </div>

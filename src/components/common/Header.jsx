@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import styles from '../../styles/Header.module.css';
 import headerlogo from '../../assets/header-logo.png';
+import buttonStyles from '../../styles/Button.module.css';
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const Header = () => {
           alt="메인페이지 로고" 
         />
         <div className={styles.header__box__container}>
-          <Button onClick={() => goToPage('/post')} className={styles.button__outlinedButton}> 
+          <Button onClick={() => goToPage('/post')} className={buttonStyles.button__outlinedButton}> 
             롤링 페이퍼 만들기
           </Button>
         </div>

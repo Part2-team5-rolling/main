@@ -26,6 +26,7 @@ const PostPage = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [modalItem, setModalItem] = useState(false);
 	const [selectedEmoji, setSelectedEmoji] = useState({});
+	const [reLoading, setReLoading] = useState(false);
 	const [EmojiSend, setEmojiSend] = useState({});
 	const { id } = useParams();
 	const { name, backgroundColor, backgroundImageURL, messageCount, reactionCount, recentMessages, topReactions } = data;
@@ -36,8 +37,8 @@ const PostPage = () => {
 	const targetRef = useRef(null);
 	const renderRef = useRef(true);
 
-	console.log(background);
-	console.log(backgroundImageURL);
+	console.log('reLoad' + reLoading);
+	console.log(data);
 
 	const loadMore = () => {
 		setOffset((prev) => prev + 5);
@@ -73,7 +74,7 @@ const PostPage = () => {
 			}
 		};
 		postDataCall();
-	}, [id, selectedEmoji]);
+	}, [id, reLoading]);
 
 	// 해당 롤링 페이퍼에 보내진 메세지 가져오기
 	useEffect(() => {
@@ -126,6 +127,7 @@ const PostPage = () => {
 				console.error('Post page 데이터 불러오기 실패!', error);
 			}
 		};
+		setReLoading((prev) => !prev);
 		emojiDataSend();
 	}, [selectedEmoji]);
 
@@ -143,6 +145,7 @@ const PostPage = () => {
 					recentMessage={recentMessages}
 					topReactions={topReactions}
 					setSelectedEmoji={setSelectedEmoji}
+					setReLoading={setReLoading}
 				/>
 			)}
 
