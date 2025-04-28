@@ -5,10 +5,10 @@ import styles from '../../styles/Layout/RollingPaper.module.css';
 
 const colors = ['#FFE2AD', '#ECD9FF', '#B1E4FF', '#D0F5C3'];
 const images = [
-  'https://picsum.photos/id/10/200/300',
-  'https://picsum.photos/id/20/200/300',
-  'https://picsum.photos/id/30/200/300',
-  'https://picsum.photos/id/40/200/300'];
+  'https://i.pinimg.com/originals/b3/96/7b/b3967bce72b7a92d70c0d1010ed745d1.jpg',
+  'https://i.pinimg.com/originals/b5/f5/ac/b5f5aca4c3958e2b8a3424ed11bb2dff.jpg',
+  'https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=11289000&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNS8wMi9DTFM2OS9OVVJJXzAwMV8wNDg2X251cmltZWRpYV8yMDE1MTIwMw==&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10006',
+  'https://d22wqd5mfy0u09.cloudfront.net/wp-content/uploads/2021/01/13175859/slider-image4.0984575d.png'];
 
 const colorMap = {
   '#FFE2AD': 'beige',

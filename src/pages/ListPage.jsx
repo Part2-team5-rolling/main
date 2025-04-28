@@ -5,6 +5,20 @@ import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 
+const colorMap = {
+  beige: '#FFE2AD',
+  purple: '#ECD9FF',
+  blue: '#B1E4FF',
+  green: '#D0F5C3',
+};
+
+const imageMap = {
+  beige: '/public/images/yellow-backimg.png',
+  purple: '/public/images/purple-backimg.png',
+  blue: '/public/images/blue-backimg.png',
+  green: '/public/images/green-backimg.png',
+};
+
 function ListPage() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -75,15 +89,29 @@ function ListPage() {
 
   const reactionsByRecipient = getReactionsByRecipient();
 
-  // 배경색에 맞는 이미지 반환 함수
-  const getBackgroundImage = (backgroundColor) => {
-    const colorImageMap = {
-      '#FFE2AD': '/public/images/yellow-backimg.png',
-      '#E5D4F4': '/public/images/purple-backimg.png',
-      '#BCE6FF': '/public/images/blue-backimg.png',
-      '#D4F4DD': '/public/images/green-backimg.png',
+  // 배경 색상 코드 가져오기
+  const getColorCode = (backgroundColor) => {
+    return colorMap[backgroundColor] || '';  // colorMap에서 색상 코드 가져오기
+  };
+
+  // 배경 이미지 URL을 설정하는 함수
+  const getBackgroundImage = (backgroundImageURL, backgroundColor) => {
+    if (backgroundImageURL) {
+      return {
+        backgroundImage: `url(${backgroundImageURL})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        className: `${styles['imgOn']}`,  // backgroundImageURL이 있을 때 imgOn 클래스 추가
+      };
+    }
+
+    // backgroundImageURL이 없으면 색상에 맞는 이미지를 사용
+    return {
+      backgroundColor: getColorCode(backgroundColor),  // 먼저 색상을 설정
+      backgroundImage: `url(${imageMap[backgroundColor]})`, // 색상에 맞는 이미지 설정
+      backgroundSize: '50%',
+      backgroundPosition: 'bottom right',
     };
-    return colorImageMap[backgroundColor] || '';
   };
 
   // 슬라이드를 왼쪽으로 이동하는 함수 (인기 롤링 페이퍼)
@@ -146,15 +174,8 @@ function ListPage() {
               {popularList.map((item) => (
                 <div
                   key={item.id}
-                  className={styles['list-page__card']}
-                  style={{
-                    backgroundColor: item.backgroundColor || 'white',
-                    backgroundImage: getBackgroundImage(item.backgroundColor)
-                      ? `url(${getBackgroundImage(item.backgroundColor)})`
-                      : 'none',
-                    backgroundSize: '50%',
-                    backgroundPosition: 'bottom right',
-                  }}
+                  className={`${styles['list-page__card']} ${item.backgroundImageURL ? styles['imgOn'] : ''}`}  // imgOn 클래스를 조건부로 추가
+                  style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
                   <p className={styles['list-page__recipient']}>To. {item.name}</p>
@@ -225,15 +246,8 @@ function ListPage() {
               {recentList.map((item) => (
                 <div
                   key={item.id}
-                  className={styles['list-page__card']}
-                  style={{
-                    backgroundColor: item.backgroundColor || 'white',
-                    backgroundImage: getBackgroundImage(item.backgroundColor)
-                      ? `url(${getBackgroundImage(item.backgroundColor)})`
-                      : 'none',
-                    backgroundSize: '50%',
-                    backgroundPosition: 'bottom right',
-                  }}
+                  className={`${styles['list-page__card']} ${item.backgroundImageURL ? styles['imgOn'] : ''}`}  // imgOn 클래스를 조건부로 추가
+                  style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
                   <p className={styles['list-page__recipient']}>To. {item.name}</p>
