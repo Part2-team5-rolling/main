@@ -38,7 +38,7 @@ const PostHeader = ({
 	const handleEmojiClick = (emojiData) => {
 		const newReaction = {
 			emoji: emojiData.emoji,
-			type: 'decrease',
+			type: 'increase',
 		};
 		setSelectedEmoji(newReaction);
 		setReLoading((prev) => !prev);
