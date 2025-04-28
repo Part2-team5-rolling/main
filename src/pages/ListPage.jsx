@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // 추가
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
@@ -13,11 +13,12 @@ function ListPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // API에서 데이터 가져오기
   useEffect(() => {
     const loadList = async () => {
       try {
-        const data = await fetchRollingList(1); // 페이지 번호를 API 명세에 맞게 넘겨줌
-        setList(data.results); // 원본만 저장
+        const data = await fetchRollingList(); // 모든 데이터를 가져옵니다.
+        setList(data.results); // 가져온 데이터 저장
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
       } finally {
@@ -28,11 +29,15 @@ function ListPage() {
     loadList();
   }, [location.pathname]); // 페이지 이동 시마다 다시 불러오기
 
-  // 인기 롤링 페이퍼 정렬 (메시지 많은 순)
-  const popularList = [...list].sort((a, b) => b.recentMessages.length - a.recentMessages.length);
+  // 인기 롤링 페이퍼 정렬 (메시지 많은 순, 최대 8개)
+  const popularList = [...list]
+    .sort((a, b) => b.recentMessages.length - a.recentMessages.length)
+    .slice(0, 8); // 최대 8개만 추출
 
-  // 최근에 만든 롤링 페이퍼 정렬 (id 내림차순)
-  const recentList = [...list].sort((a, b) => b.id - a.id);
+  // 최근에 만든 롤링 페이퍼 정렬 (생성 시간 기준, 최대 8개)
+  const recentList = [...list]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // createdAt을 기준으로 정렬
+    .slice(0, 8); // 최대 8개만 추출
 
   // 이모지 갯수를 계산하는 함수
   const getEmojiCount = (reactions) => {
@@ -48,13 +53,16 @@ function ListPage() {
     const reactionsByRecipient = {};
 
     list.forEach((item) => {
-      item.recentMessages.forEach((msg) => {
+      item.recentMessages?.forEach((msg) => { // recentMessages가 없을 수 있으므로 안전하게 처리
         const recipient = item.recipient;
 
-        if (!reactionsByRecipient[recipient]) {
-          reactionsByRecipient[recipient] = [];
+        // reactions가 존재하는지 확인
+        if (msg.reactions) {
+          if (!reactionsByRecipient[recipient]) {
+            reactionsByRecipient[recipient] = [];
+          }
+          reactionsByRecipient[recipient].push(...msg.reactions);
         }
-        reactionsByRecipient[recipient].push(...msg.reactions);
       });
     });
 
@@ -149,7 +157,7 @@ function ListPage() {
                   }}
                   onClick={() => handleCardClick(item.id)}
                 >
-                  <p className={styles['list-page__recipient']}>To. {item.recipient}</p>
+                  <p className={styles['list-page__recipient']}>To. {item.name}</p>
 
                   <div className={styles['list-page__profile-wrap']}>
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
@@ -213,7 +221,6 @@ function ListPage() {
                 transition: 'transform 0.5s ease',
                 overflow: 'hidden',
               }}
-              onClick={() => navigate(`/post/${item.id}`)}
             >
               {recentList.map((item) => (
                 <div
@@ -229,7 +236,7 @@ function ListPage() {
                   }}
                   onClick={() => handleCardClick(item.id)}
                 >
-                  <p className={styles['list-page__recipient']}>To. {item.recipient}</p>
+                  <p className={styles['list-page__recipient']}>To. {item.name}</p>
 
                   <div className={styles['list-page__profile-wrap']}>
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
@@ -277,12 +284,12 @@ function ListPage() {
           </button>
         </div>
       </div>
+
       <div className={styles['list-page__buttons']}>
         <Button onClick={() => goToPage('/post')} className="button--primary">
           나도 만들어보기
         </Button>
       </div>
-
     </div>
   );
 }

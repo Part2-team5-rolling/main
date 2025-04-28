@@ -152,6 +152,7 @@
     border: 1px solid #CCC;
     background-color: #FFF;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .carousel-button:first-child {
