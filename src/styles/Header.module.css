@@ -15,7 +15,7 @@
   background-color: #FFFFFF;
 }
 
-.header-contents {
+.header_contents {
   max-width: 1248px;
   height: 40px;
   width: 100%;
@@ -27,17 +27,34 @@
   padding: 0 24px; 
 }
 
-.header-contents > img {
+.header_contents > img {
   width: 106px;
   height: 30px;
 }
 
-.header-contents > button {
+.header_contents > button {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.header__box--container {
+.header__box__container {
   width: 157px;
+}
+
+.button__outlinedButton {
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  padding: 8px 16px;
+  border: 1px solid gray;
+  background-color: #FFFFFF;
+  font-size: 14px; /** 폰트 지정 이후에 16픽셀로 바꿔야함 **/
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  &:disabled {
+    background-color: #CCCCCC;
+  }
 }

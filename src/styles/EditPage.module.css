@@ -2,9 +2,6 @@
 	width: 100%;
 	padding-top: 113px;
 	min-height: 100vh;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
 }
 
 .card__wrap {
@@ -79,4 +76,32 @@
 		font-size: 16px;
 		line-height: 24px;
 	}
+}
+
+.button__delete_rolling_page {
+  position: absolute;
+  width: 92px;
+  height: 39px;
+  top: 196px;
+  left: 1468px;
+  background-color: #9935FF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.button__delete_card {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  background-color: #FFFFFF;
+  color: white;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 10;
 }
