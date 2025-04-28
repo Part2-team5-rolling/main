@@ -19,7 +19,7 @@ const ShareMenu = ({ onClick, commentCount }) => {
 	};
 
   const handleKakaoShare = () => {
-    const appURL = import.meta.env.VITE_KAKAO_APP_KEY;
+    const appURL = import.meta.env.VITE_APP_URL;
     const link = {
       webUrl: appURL,
     }
@@ -45,7 +45,9 @@ const ShareMenu = ({ onClick, commentCount }) => {
   useEffect(() => {
     const appKey = import.meta.env.VITE_KAKAO_APP_KEY; 
     Kakao.init(appKey);
-    return Kakao.cleanup();
+    return () => {
+      Kakao.cleanup();
+    }
   }, []);
 
 	return (
