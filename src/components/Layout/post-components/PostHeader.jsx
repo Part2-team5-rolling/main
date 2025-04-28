@@ -18,13 +18,13 @@ const PostHeader = ({
 	reactionCount,
 	topReactions,
 	setSelectedEmoji,
+	setReLoading,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isEmojiOpen, setIsEmojiOpen] = useState(false);
 	const [isMoreEmoji, setIsMoreEmoji] = useState(false);
 
 	const emojiMoreRef = useRef(null);
-	const emojiPickerRef = useRef(null);
 	const shareButtonRef = useRef(null);
 
 	const handleClick = () => {
@@ -41,6 +41,8 @@ const PostHeader = ({
 			type: 'increase',
 		};
 		setSelectedEmoji(newReaction);
+		setReLoading((prev) => !prev);
+		setIsEmojiOpen((prev) => !prev);
 	};
 
 	const handleMoreEmoji = () => {
@@ -54,10 +56,6 @@ const PostHeader = ({
 
 		if (emojiMoreRef.current && !emojiMoreRef.current.contains(event.target)) {
 			setIsMoreEmoji(false);
-		}
-
-		if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
-			setIsEmojiOpen(false);
 		}
 	};
 
@@ -96,7 +94,7 @@ const PostHeader = ({
 
 				<ul className={style.button__list}>
 					<li className={style.emoji__add__list}>
-						<button className={style.emoji__add} type='button' onClick={handleEmojiOpen} ref={emojiPickerRef}>
+						<button className={style.emoji__add} type='button' onClick={handleEmojiOpen}>
 							<img src={addEmoji} alt='이모지 추가' />
 							<span>추가</span>
 						</button>

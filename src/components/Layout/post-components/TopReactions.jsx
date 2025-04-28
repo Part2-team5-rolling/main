@@ -4,6 +4,7 @@ const TopReactions = ({ topReactions }) => {
 	return (
 		<div className={style.reaction__wrap}>
 			{topReactions?.map((item) => {
+				if (item.count === 0) return null;
 				return (
 					<div key={item.id} className={style.emoji__wrap}>
 						<span>{item.emoji}</span>
