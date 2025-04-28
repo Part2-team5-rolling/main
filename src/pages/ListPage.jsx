@@ -5,6 +5,20 @@ import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 
+const colorMap = {
+  beige: '#FFE2AD',
+  purple: '#ECD9FF',
+  blue: '#B1E4FF',
+  green: '#D0F5C3',
+};
+
+const images = [
+  'https://picsum.photos/id/10/200/300',  // beige
+  'https://picsum.photos/id/20/200/300',  // purple
+  'https://picsum.photos/id/30/200/300',  // blue
+  'https://picsum.photos/id/40/200/300',  // green
+];
+
 function ListPage() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,12 +92,17 @@ function ListPage() {
   // 배경색에 맞는 이미지 반환 함수
   const getBackgroundImage = (backgroundColor) => {
     const colorImageMap = {
-      '#FFE2AD': '/public/images/yellow-backimg.png',
-      '#E5D4F4': '/public/images/purple-backimg.png',
-      '#BCE6FF': '/public/images/blue-backimg.png',
-      '#D4F4DD': '/public/images/green-backimg.png',
+      beige: images[0],
+      purple: images[1],
+      blue: images[2],
+      green: images[3],
     };
-    return colorImageMap[backgroundColor] || '';
+    return colorImageMap[backgroundColor] || '';  // backgroundColor에 맞는 이미지를 반환, 없으면 빈 문자열 반환
+  };
+
+  // 배경 색상 코드 가져오기
+  const getColorCode = (backgroundColor) => {
+    return colorMap[backgroundColor] || '';  // colorMap에서 색상 코드 가져오기
   };
 
   // 슬라이드를 왼쪽으로 이동하는 함수 (인기 롤링 페이퍼)
@@ -148,8 +167,8 @@ function ListPage() {
                   key={item.id}
                   className={styles['list-page__card']}
                   style={{
-                    backgroundColor: item.backgroundColor || 'white',
-                    backgroundImage: getBackgroundImage(item.backgroundColor)
+                    backgroundColor: getColorCode(item.backgroundColor) || 'white',  // 색상 코드 적용
+                    backgroundImage: getBackgroundImage(item.backgroundColor)  // 배경 이미지 적용
                       ? `url(${getBackgroundImage(item.backgroundColor)})`
                       : 'none',
                     backgroundSize: '50%',
@@ -227,8 +246,8 @@ function ListPage() {
                   key={item.id}
                   className={styles['list-page__card']}
                   style={{
-                    backgroundColor: item.backgroundColor || 'white',
-                    backgroundImage: getBackgroundImage(item.backgroundColor)
+                    backgroundColor: getColorCode(item.backgroundColor) || 'white',  // 색상 코드 적용
+                    backgroundImage: getBackgroundImage(item.backgroundColor)  // 배경 이미지 적용
                       ? `url(${getBackgroundImage(item.backgroundColor)})`
                       : 'none',
                     backgroundSize: '50%',
