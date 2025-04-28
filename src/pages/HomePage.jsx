@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../components/common/Button';
 import Header from '../components/common/Header';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Homepage.css'
+import '../styles/HomePage.css'
 import mainImage01 from '../assets/home-content-01.png';
 import mainImage02 from '../assets/home-content-02.png';
 
