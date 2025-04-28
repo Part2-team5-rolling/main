@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; // 추가
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
+import Header from '../components/common/Header';
+import Button from '../components/common/Button';
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -109,8 +111,13 @@ function ListPage() {
     navigate(`/post/${id}`);
   };
 
+  const goToPage = (path) => {
+    navigate(path);
+  };
+
   return (
     <div className={styles['list-page']}>
+      <Header />
 
       {/* 인기 롤링 페이퍼 */}
       <div className={styles['list-page__popular']}>
@@ -269,6 +276,11 @@ function ListPage() {
             ❯
           </button>
         </div>
+      </div>
+      <div className={styles['list-page__buttons']}>
+        <Button onClick={() => goToPage('/post')} className="button--primary">
+          나도 만들어보기
+        </Button>
       </div>
 
     </div>

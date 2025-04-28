@@ -11,6 +11,7 @@
   letter-spacing: -0.01em;
   border-radius: 12px;
   border: 0px;
+  cursor: pointer;
   &:disabled {
     background-color: #CCCCCC;
   }
@@ -27,7 +28,7 @@
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.01em;
-
+  cursor: pointer;
   &:disabled {
     background-color: #CCCCCC;
   }
