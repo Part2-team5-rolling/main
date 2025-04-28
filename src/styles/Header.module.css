@@ -30,6 +30,7 @@
 .header_contents > img {
   width: 106px;
   height: 30px;
+  cursor: pointer;
 }
 
 .header_contents > button {
@@ -49,7 +50,7 @@
   padding: 8px 16px;
   border: 1px solid gray;
   background-color: #FFFFFF;
-  font-size: 14px; /** 폰트 지정 이후에 16픽셀로 바꿔야함 **/
+  font-size: 16px;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.01em;

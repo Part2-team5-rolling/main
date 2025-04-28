@@ -4,6 +4,7 @@ import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
+import buttonStyles from '../styles/Button.module.css';
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -278,7 +279,7 @@ function ListPage() {
         </div>
       </div>
       <div className={styles['list-page__buttons']}>
-        <Button onClick={() => goToPage('/post')} className="button--primary">
+        <Button onClick={() => goToPage('/post')} className={buttonStyles.button__primary}>
           나도 만들어보기
         </Button>
       </div>

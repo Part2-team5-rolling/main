@@ -54,29 +54,6 @@
 	align-items: center;
 	z-index: 9999;
 }
-@media (max-width: 1248px) {
-	.post__content {
-		width: 100%;
-	}
-	.card__wrap {
-		margin: unset;
-		margin-bottom: 200px;
-		padding: 0 24px;
-		width: 100%;
-	}
-}
-
-@media (max-width: 730px) {
-	.post__content {
-		padding-top: 24px;
-	}
-	.edit__Link {
-		width: 320px;
-		height: 56px;
-		font-size: 16px;
-		line-height: 24px;
-	}
-}
 
 .button__delete_rolling_page {
   position: absolute;
@@ -105,3 +82,28 @@
   cursor: pointer;
   z-index: 10;
 }
+
+@media (max-width: 1248px) {
+	.post__content {
+		width: 100%;
+	}
+	.card__wrap {
+		margin: unset;
+		margin-bottom: 200px;
+		padding: 0 24px;
+		width: 100%;
+	}
+}
+
+@media (max-width: 730px) {
+	.post__content {
+		padding-top: 24px;
+	}
+	.edit__Link {
+		width: 320px;
+		height: 56px;
+		font-size: 16px;
+		line-height: 24px;
+	}
+}
+
