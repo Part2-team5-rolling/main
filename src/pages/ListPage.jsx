@@ -12,12 +12,12 @@ const colorMap = {
   green: '#D0F5C3',
 };
 
-const images = [
-  'https://picsum.photos/id/10/200/300',  // beige
-  'https://picsum.photos/id/20/200/300',  // purple
-  'https://picsum.photos/id/30/200/300',  // blue
-  'https://picsum.photos/id/40/200/300',  // green
-];
+const imageMap = {
+  beige: '/public/images/yellow-backimg.png',
+  purple: '/public/images/purple-backimg.png',
+  blue: '/public/images/blue-backimg.png',
+  green: '/public/images/green-backimg.png',
+};
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -89,20 +89,28 @@ function ListPage() {
 
   const reactionsByRecipient = getReactionsByRecipient();
 
-  // 배경색에 맞는 이미지 반환 함수
-  const getBackgroundImage = (backgroundColor) => {
-    const colorImageMap = {
-      beige: images[0],
-      purple: images[1],
-      blue: images[2],
-      green: images[3],
-    };
-    return colorImageMap[backgroundColor] || '';  // backgroundColor에 맞는 이미지를 반환, 없으면 빈 문자열 반환
-  };
-
   // 배경 색상 코드 가져오기
   const getColorCode = (backgroundColor) => {
     return colorMap[backgroundColor] || '';  // colorMap에서 색상 코드 가져오기
+  };
+
+  // 배경 이미지 URL을 설정하는 함수
+  const getBackgroundImage = (backgroundImageURL, backgroundColor) => {
+    if (backgroundImageURL) {
+      return {
+        backgroundImage: `url(${backgroundImageURL})`,
+        backgroundSize: '100%',
+        backgroundPosition: 'center',
+      };
+    }
+
+    // backgroundImageURL이 없으면 색상에 맞는 이미지를 사용
+    return {
+      backgroundColor: getColorCode(backgroundColor),  // 먼저 색상을 설정
+      backgroundImage: `url(${imageMap[backgroundColor]})`, // 색상에 맞는 이미지 설정
+      backgroundSize: '50%',
+      backgroundPosition: 'bottom right',
+    };
   };
 
   // 슬라이드를 왼쪽으로 이동하는 함수 (인기 롤링 페이퍼)
@@ -166,14 +174,7 @@ function ListPage() {
                 <div
                   key={item.id}
                   className={styles['list-page__card']}
-                  style={{
-                    backgroundColor: getColorCode(item.backgroundColor) || 'white',  // 색상 코드 적용
-                    backgroundImage: getBackgroundImage(item.backgroundColor)  // 배경 이미지 적용
-                      ? `url(${getBackgroundImage(item.backgroundColor)})`
-                      : 'none',
-                    backgroundSize: '50%',
-                    backgroundPosition: 'bottom right',
-                  }}
+                  style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
                   <p className={styles['list-page__recipient']}>To. {item.name}</p>
@@ -245,14 +246,7 @@ function ListPage() {
                 <div
                   key={item.id}
                   className={styles['list-page__card']}
-                  style={{
-                    backgroundColor: getColorCode(item.backgroundColor) || 'white',  // 색상 코드 적용
-                    backgroundImage: getBackgroundImage(item.backgroundColor)  // 배경 이미지 적용
-                      ? `url(${getBackgroundImage(item.backgroundColor)})`
-                      : 'none',
-                    backgroundSize: '50%',
-                    backgroundPosition: 'bottom right',
-                  }}
+                  style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
                   <p className={styles['list-page__recipient']}>To. {item.name}</p>
