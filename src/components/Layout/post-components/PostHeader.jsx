@@ -42,6 +42,7 @@ const PostHeader = ({
 		};
 		setSelectedEmoji(newReaction);
 		setReLoading((prev) => !prev);
+		setIsEmojiOpen((prev) => !prev);
 	};
 
 	const handleMoreEmoji = () => {

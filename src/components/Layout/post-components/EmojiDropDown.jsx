@@ -21,6 +21,7 @@ const EmojiDropDown = ({ id }) => {
 	return (
 		<div className={style.emoji__dropdown}>
 			{sliceReaction?.map((item) => {
+				if (item.count === 0) return null;
 				return (
 					<div key={item.id} className={style.emoji__wrap}>
 						<span>{item.emoji}</span>
