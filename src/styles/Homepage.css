@@ -1,11 +1,12 @@
 
 body {
+  width: 100%;
   overflow-x: hidden;
 }
 
 .homepage {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .homepage__contents {
@@ -94,7 +95,7 @@ body {
 /* 태블릿 버전 (768px ~ 1023px) */
 @media (max-width: 1023px) {
   .homepage__content {
-    width: 100vw;
+    width: 100%;
     margin: 0px;
     height: auto;
     align-items: center;
@@ -103,7 +104,6 @@ body {
   }
 
   .homepage__contents {
-    width: 100%;
     max-width: 975px;
     margin : 0px 24px;
   }
@@ -129,7 +129,7 @@ body {
     display: block;
   }
   .homepage__content--01 > img {
-    transform: translateX(-7%);
+    transform: none;
   }
 
   .homepage__text {
@@ -159,6 +159,11 @@ body {
     max-width: 720px;
     box-sizing: border-box;
   }
+}
+
+.homepage__box--container {
+  width: 100%;
+  margin: 24px 0px;
 }
 
 /* 모바일 버전 (최대 767px) */
@@ -217,7 +222,12 @@ body {
   }
 
   .homepage__content--02 > img {
-    width: 320px;
+    width: 420px;
+    height: 113px;
+    max-width: none;
+    transform: translateX(-14%);
+    z-index: 1;
+    overflow-x: hidden;
   }
 
   .homepage__text {
@@ -228,6 +238,10 @@ body {
   .homepage__highlight {
     font-size: 18px;
     line-height: 28px;
+  }
+
+  .homepage__highlight > span {
+    display: block;
   }
 
   .homepage__subtext {
