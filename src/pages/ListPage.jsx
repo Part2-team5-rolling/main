@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // 추가
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Pages/ListPage.module.css';
-import { fetchRollingList } from '../api/list-api'; // 수정된 API 임포트
+import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 
@@ -17,7 +17,7 @@ function ListPage() {
   useEffect(() => {
     const loadList = async () => {
       try {
-        const data = await fetchRollingList(1, 10); // API를 사용하여 데이터를 가져옵니다.
+        const data = await fetchRollingList(1); // API를 사용하여 데이터를 가져옵니다.
         setList(data.results); // 가져온 데이터 저장
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
@@ -44,12 +44,12 @@ function ListPage() {
     return emojiCount;
   };
 
-// 각 받은 사람 별로 이모지 갯수 계산
-const getReactionsByRecipient = () => {
+  // 각 받은 사람 별로 이모지 갯수 계산
+  const getReactionsByRecipient = () => {
     const reactionsByRecipient = {};
 
     list.forEach((item) => {
-      item.recentMessages.forEach((msg) => {
+      item.recentMessages?.forEach((msg) => { // recentMessages가 없을 수 있으므로 안전하게 처리
         const recipient = item.recipient;
 
         // reactions가 존재하는지 확인
@@ -153,7 +153,7 @@ const getReactionsByRecipient = () => {
                   }}
                   onClick={() => handleCardClick(item.id)}
                 >
-                  <p className={styles['list-page__recipient']}>To. {item.recipient}</p>
+                  <p className={styles['list-page__recipient']}>To. {item.name}</p>
 
                   <div className={styles['list-page__profile-wrap']}>
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
@@ -232,7 +232,7 @@ const getReactionsByRecipient = () => {
                   }}
                   onClick={() => handleCardClick(item.id)}
                 >
-                  <p className={styles['list-page__recipient']}>To. {item.recipient}</p>
+                  <p className={styles['list-page__recipient']}>To. {item.name}</p>
 
                   <div className={styles['list-page__profile-wrap']}>
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
