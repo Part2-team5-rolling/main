@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; // 추가
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -206,6 +208,7 @@ function ListPage() {
                 transition: 'transform 0.5s ease',
                 overflow: 'hidden',
               }}
+              onClick={() => navigate(`/post/${item.id}`)}
             >
               {recentList.map((item) => (
                 <div
