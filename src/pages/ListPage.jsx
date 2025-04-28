@@ -13,10 +13,10 @@ const colorMap = {
 };
 
 const imageMap = {
-  beige: '/public/images/yellow-backimg.png',
-  purple: '/public/images/purple-backimg.png',
-  blue: '/public/images/blue-backimg.png',
-  green: '/public/images/green-backimg.png',
+  beige: '/images/yellow-backimg.png',
+  purple: '/images/purple-backimg.png',
+  blue: '/images/blue-backimg.png',
+  green: '/images/green-backimg.png',
 };
 
 function ListPage() {
@@ -184,7 +184,7 @@ function ListPage() {
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
                       <img
                         key={msg.id}
-                        src={msg.profileImageURL || '/public/icons/profile.png'}
+                        src={msg.profileImageURL || '/icons/profile.png'}
                         className={styles['list-page__profile-image']}
                         style={{ left: `${index * 16}px` }}
                       />
@@ -256,7 +256,7 @@ function ListPage() {
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
                       <img
                         key={msg.id}
-                        src={msg.profileImageURL || '/public/icons/profile.png'}
+                        src={msg.profileImageURL || '/icons/profile.png'}
                         className={styles['list-page__profile-image']}
                         style={{ left: `${index * 16}px` }}
                       />
