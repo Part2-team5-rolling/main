@@ -5,11 +5,10 @@ import styles from '../../styles/Layout/RollingPaper.module.css';
 
 const colors = ['#FFE2AD', '#ECD9FF', '#B1E4FF', '#D0F5C3'];
 const images = [
-  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg1.png',
-  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg2.png',
-  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg3.png',
-  'https://raw.githubusercontent.com/Part2-team5-rolling/rolling/main/public/images/bg4.png',
-];
+  'https://i.pinimg.com/originals/b3/96/7b/b3967bce72b7a92d70c0d1010ed745d1.jpg',
+  'https://i.pinimg.com/originals/b5/f5/ac/b5f5aca4c3958e2b8a3424ed11bb2dff.jpg',
+  'https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=11289000&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNS8wMi9DTFM2OS9OVVJJXzAwMV8wNDg2X251cmltZWRpYV8yMDE1MTIwMw==&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10006',
+  'https://d22wqd5mfy0u09.cloudfront.net/wp-content/uploads/2021/01/13175859/slider-image4.0984575d.png'];
 
 const colorMap = {
   '#FFE2AD': 'beige',
@@ -23,7 +22,7 @@ const RollingPaperForm = () => {
   const [error, setError] = useState(false);
   const [activeTab, setActiveTab] = useState("color");
   const [selectedColor, setSelectedColor] = useState(colors[0]);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(images[0]);
   const navigate = useNavigate();
 
   const handleBlur = () => {
@@ -42,22 +41,19 @@ const RollingPaperForm = () => {
       return;
     }
 
-    let backgroundColor = null;
-    let backgroundImageURL = null;
+    const recipientData = { name: to };
 
     if (activeTab === "color") {
-      backgroundColor = colorMap[selectedColor];
+      recipientData.backgroundColor = colorMap[selectedColor];
     } else if (activeTab === "image") {
-      backgroundImageURL = selectedImage;
+      recipientData.backgroundImageURL = selectedImage;
+    }
+
+    if (!recipientData.backgroundColor) {
+      recipientData.backgroundColor = colorMap[colors[0]];
     }
 
     try {
-      const recipientData = {
-        name: to,
-        backgroundColor: backgroundColor,
-        backgroundImageURL: backgroundImageURL
-      };
-
       const response = await createRecipient(recipientData);
       const newId = response.id;
 
@@ -91,16 +87,14 @@ const RollingPaperForm = () => {
           <button
             type="button"
             onClick={() => setActiveTab("color")}
-            className={`${styles["rolling-paper__tab-button"]} ${activeTab === "color" ? styles["rolling-paper__active-tab"] : ""
-              }`}
+            className={`${styles["rolling-paper__tab-button"]} ${activeTab === "color" ? styles["rolling-paper__active-tab"] : ""}`}
           >
             컬러
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("image")}
-            className={`${styles["rolling-paper__tab-button"]} ${activeTab === "image" ? styles["rolling-paper__active-tab"] : ""
-              }`}
+            className={`${styles["rolling-paper__tab-button"]} ${activeTab === "image" ? styles["rolling-paper__active-tab"] : ""}`}
           >
             이미지
           </button>
@@ -124,18 +118,20 @@ const RollingPaperForm = () => {
         )}
         {activeTab === "image" && (
           <div className={styles["rolling-paper__image-box-container"]}>
-            {images.map((img) => (
-              <div
-                key={img}
-                className={`${styles["rolling-paper__image-box"]} ${selectedImage === img ? styles["rolling-paper__selected"] : ''}`}
-                style={{ backgroundImage: `url(${img})` }}
-                onClick={() => setSelectedImage(img)}
-              >
-                {selectedImage === img && (
-                  <div className={styles["rolling-paper__checkmark"]}>✓</div>
-                )}
-              </div>
-            ))}
+            {images.map((img) => {
+              return (
+                <div
+                  key={img}
+                  className={`${styles["rolling-paper__image-box"]} ${selectedImage === img ? styles["rolling-paper__selected"] : ''}`}
+                  style={{ backgroundImage: `url(${img})` }}
+                  onClick={() => setSelectedImage(img)}
+                >
+                  {selectedImage === img && (
+                    <div className={styles["rolling-paper__checkmark"]}>✓</div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

@@ -1,10 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // 추가
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Pages/ListPage.module.css';
 import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 import buttonStyles from '../styles/Button.module.css';
+
+const colorMap = {
+  beige: '#FFE2AD',
+  purple: '#ECD9FF',
+  blue: '#B1E4FF',
+  green: '#D0F5C3',
+};
+
+const imageMap = {
+  beige: '/public/images/yellow-backimg.png',
+  purple: '/public/images/purple-backimg.png',
+  blue: '/public/images/blue-backimg.png',
+  green: '/public/images/green-backimg.png',
+};
 
 function ListPage() {
   const [list, setList] = useState([]);
@@ -14,11 +28,12 @@ function ListPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // API에서 데이터 가져오기
   useEffect(() => {
     const loadList = async () => {
       try {
-        const data = await fetchRollingList(1); // 페이지 번호를 API 명세에 맞게 넘겨줌
-        setList(data.results); // 원본만 저장
+        const data = await fetchRollingList(); // 모든 데이터를 가져옵니다.
+        setList(data.results); // 가져온 데이터 저장
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
       } finally {
@@ -29,11 +44,15 @@ function ListPage() {
     loadList();
   }, [location.pathname]); // 페이지 이동 시마다 다시 불러오기
 
-  // 인기 롤링 페이퍼 정렬 (메시지 많은 순)
-  const popularList = [...list].sort((a, b) => b.recentMessages.length - a.recentMessages.length);
+  // 인기 롤링 페이퍼 정렬 (메시지 많은 순, 최대 8개)
+  const popularList = [...list]
+    .sort((a, b) => b.recentMessages.length - a.recentMessages.length)
+    .slice(0, 8); // 최대 8개만 추출
 
-  // 최근에 만든 롤링 페이퍼 정렬 (id 내림차순)
-  const recentList = [...list].sort((a, b) => b.id - a.id);
+  // 최근에 만든 롤링 페이퍼 정렬 (생성 시간 기준, 최대 8개)
+  const recentList = [...list]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // createdAt을 기준으로 정렬
+    .slice(0, 8); // 최대 8개만 추출
 
   // 이모지 갯수를 계산하는 함수
   const getEmojiCount = (reactions) => {
@@ -49,13 +68,16 @@ function ListPage() {
     const reactionsByRecipient = {};
 
     list.forEach((item) => {
-      item.recentMessages.forEach((msg) => {
+      item.recentMessages?.forEach((msg) => { // recentMessages가 없을 수 있으므로 안전하게 처리
         const recipient = item.recipient;
 
-        if (!reactionsByRecipient[recipient]) {
-          reactionsByRecipient[recipient] = [];
+        // reactions가 존재하는지 확인
+        if (msg.reactions) {
+          if (!reactionsByRecipient[recipient]) {
+            reactionsByRecipient[recipient] = [];
+          }
+          reactionsByRecipient[recipient].push(...msg.reactions);
         }
-        reactionsByRecipient[recipient].push(...msg.reactions);
       });
     });
 
@@ -68,15 +90,29 @@ function ListPage() {
 
   const reactionsByRecipient = getReactionsByRecipient();
 
-  // 배경색에 맞는 이미지 반환 함수
-  const getBackgroundImage = (backgroundColor) => {
-    const colorImageMap = {
-      '#FFE2AD': '/public/images/yellow-backimg.png',
-      '#E5D4F4': '/public/images/purple-backimg.png',
-      '#BCE6FF': '/public/images/blue-backimg.png',
-      '#D4F4DD': '/public/images/green-backimg.png',
+  // 배경 색상 코드 가져오기
+  const getColorCode = (backgroundColor) => {
+    return colorMap[backgroundColor] || '';  // colorMap에서 색상 코드 가져오기
+  };
+
+  // 배경 이미지 URL을 설정하는 함수
+  const getBackgroundImage = (backgroundImageURL, backgroundColor) => {
+    if (backgroundImageURL) {
+      return {
+        backgroundImage: `url(${backgroundImageURL})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        className: `${styles['imgOn']}`,  // backgroundImageURL이 있을 때 imgOn 클래스 추가
+      };
+    }
+
+    // backgroundImageURL이 없으면 색상에 맞는 이미지를 사용
+    return {
+      backgroundColor: getColorCode(backgroundColor),  // 먼저 색상을 설정
+      backgroundImage: `url(${imageMap[backgroundColor]})`, // 색상에 맞는 이미지 설정
+      backgroundSize: '50%',
+      backgroundPosition: 'bottom right',
     };
-    return colorImageMap[backgroundColor] || '';
   };
 
   // 슬라이드를 왼쪽으로 이동하는 함수 (인기 롤링 페이퍼)
@@ -139,18 +175,11 @@ function ListPage() {
               {popularList.map((item) => (
                 <div
                   key={item.id}
-                  className={styles['list-page__card']}
-                  style={{
-                    backgroundColor: item.backgroundColor || 'white',
-                    backgroundImage: getBackgroundImage(item.backgroundColor)
-                      ? `url(${getBackgroundImage(item.backgroundColor)})`
-                      : 'none',
-                    backgroundSize: '50%',
-                    backgroundPosition: 'bottom right',
-                  }}
+                  className={`${styles['list-page__card']} ${item.backgroundImageURL ? styles['imgOn'] : ''}`}  // imgOn 클래스를 조건부로 추가
+                  style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
-                  <p className={styles['list-page__recipient']}>To. {item.recipient}</p>
+                  <p className={styles['list-page__recipient']}>To. {item.name}</p>
 
                   <div className={styles['list-page__profile-wrap']}>
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
@@ -214,23 +243,15 @@ function ListPage() {
                 transition: 'transform 0.5s ease',
                 overflow: 'hidden',
               }}
-              onClick={() => navigate(`/post/${item.id}`)}
             >
               {recentList.map((item) => (
                 <div
                   key={item.id}
-                  className={styles['list-page__card']}
-                  style={{
-                    backgroundColor: item.backgroundColor || 'white',
-                    backgroundImage: getBackgroundImage(item.backgroundColor)
-                      ? `url(${getBackgroundImage(item.backgroundColor)})`
-                      : 'none',
-                    backgroundSize: '50%',
-                    backgroundPosition: 'bottom right',
-                  }}
+                  className={`${styles['list-page__card']} ${item.backgroundImageURL ? styles['imgOn'] : ''}`}  // imgOn 클래스를 조건부로 추가
+                  style={getBackgroundImage(item.backgroundImageURL, item.backgroundColor)} // 배경 이미지 및 색상 설정
                   onClick={() => handleCardClick(item.id)}
                 >
-                  <p className={styles['list-page__recipient']}>To. {item.recipient}</p>
+                  <p className={styles['list-page__recipient']}>To. {item.name}</p>
 
                   <div className={styles['list-page__profile-wrap']}>
                     {item.recentMessages.slice(0, 3).map((msg, index) => (
@@ -278,12 +299,12 @@ function ListPage() {
           </button>
         </div>
       </div>
+
       <div className={styles['list-page__buttons']}>
         <Button onClick={() => goToPage('/post')} className={buttonStyles.button__primary}>
           나도 만들어보기
         </Button>
       </div>
-
     </div>
   );
 }

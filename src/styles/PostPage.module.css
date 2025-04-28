@@ -2,6 +2,9 @@
 	width: 100%;
 	padding-top: 113px;
 	min-height: 100vh;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .card__wrap {
