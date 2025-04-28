@@ -8,6 +8,13 @@ import PostModal from '../components/PostModal';
 import ModalItem from '../components/ModalItem';
 import Header from '../components/common/Header';
 
+const colorMap = {
+	beige: '#FFE2AD',
+	purple: '#ECD9FF',
+	blue: '#B1E4FF',
+	green: '#D0F5C3',
+};
+
 const PostPage = () => {
 	const [data, setData] = useState({});
 	const [headerLoad, setHeaderLoad] = useState(true);
@@ -22,9 +29,15 @@ const PostPage = () => {
 	const [EmojiSend, setEmojiSend] = useState({});
 	const { id } = useParams();
 	const { name, backgroundColor, backgroundImageURL, messageCount, reactionCount, recentMessages, topReactions } = data;
-	const background = backgroundColor ? { backgroundColor } : { backgroundImageURL };
+	const background =
+		backgroundColor && backgroundImageURL
+			? { backgroundImage: `url(${backgroundImageURL})` }
+			: { backgroundColor: colorMap[backgroundColor] };
 	const targetRef = useRef(null);
 	const renderRef = useRef(true);
+
+	console.log(background);
+	console.log(backgroundImageURL);
 
 	const loadMore = () => {
 		setOffset((prev) => prev + 5);
@@ -136,28 +149,26 @@ const PostPage = () => {
 			<section className={style.post__content} style={background}>
 				<div className={style.card__wrap}>
 					<Card userId={id} />
-					{messageCount === 0 ? (
-						<h3>불러올 메세지가 없습니다.</h3>
-					) : (
-						messages.map((message) => {
-							return (
-								<Card
-									key={message.id}
-									id={message.id}
-									sender={message.sender}
-									relationship={message.relationship}
-									profileImg={message.profileImageURL}
-									cardFont={message.font}
-									content={message.content}
-									createdAt={message.createdAt}
-									onClick={() => {
-										setShowModal(true);
-										setModalItem(message);
-									}}
-								/>
-							);
-						})
-					)}
+					{messageCount === 0
+						? ''
+						: messages.map((message) => {
+								return (
+									<Card
+										key={message.id}
+										id={message.id}
+										sender={message.sender}
+										relationship={message.relationship}
+										profileImg={message.profileImageURL}
+										cardFont={message.font}
+										content={message.content}
+										createdAt={message.createdAt}
+										onClick={() => {
+											setShowModal(true);
+											setModalItem(message);
+										}}
+									/>
+								);
+						  })}
 				</div>
 
 				<Link to={`/post/${id}/edit`} className={style.edit__Link}>

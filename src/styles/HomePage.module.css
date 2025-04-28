@@ -1,4 +1,3 @@
-
 body {
   width: 100%;
   overflow-x: hidden;
@@ -13,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 124px;
   margin-bottom: 24px;
 }
 
@@ -29,23 +28,23 @@ body {
   box-sizing: border-box;
 }
 
-.homepage__content--01 {
+.homepage__content__01 {
   justify-content: space-between;
   margin-bottom: 30px;
 }
 
-.homepage__content--01 > img {
+.homepage__content__01 > img {
   width: 720px;
   height: 204px;
 }
 
-.homepage__content--02 {
+.homepage__content__02 {
   flex-direction: row-reverse;
   justify-content: flex-end;
   margin-bottom: 48px;
 }
 
-.homepage__content--02 > img {
+.homepage__content__02 > img {
   width: 720px;
   height: 204px;
 }
@@ -88,9 +87,28 @@ body {
   letter-spacing: -0.01em;
 }
 
-.homepage__box--container {
+.homepage__box__container {
   width: 280px;
 }
+
+.button__primary {
+  width: 100%;
+  height: 56px;
+  padding: 14px 24px;
+  gap: 10px;
+  background-color: #9935FF;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  border-radius: 12px;
+  border: 0px;
+  cursor: pointer;
+  &:disabled {
+    background-color: #CCCCCC;
+  }
+  }
 
 /* 태블릿 버전 (768px ~ 1023px) */
 @media (max-width: 1023px) {
@@ -105,30 +123,30 @@ body {
 
   .homepage__contents {
     max-width: 975px;
-    margin : 0px 24px;
+    margin: 60px 24px 0px 24px;
   }
 
-  .homepage__content--01,
-  .homepage__content--02 {
+  .homepage__content__01,
+  .homepage__content__02 {
     flex-direction: column;
   }
 
-  .homepage__content--01 {
+  .homepage__content__01 {
     margin-top: 49px;
     margin-bottom: 30px;
   }
 
-  .homepage__content--02 {
+  .homepage__content__02 {
     flex-direction: column;
     margin-bottom: 48px;
   }
 
-  .homepage__content--01 > img,
-  .homepage__content--02 > img {
+  .homepage__content__01 > img,
+  .homepage__content__02 > img {
     margin: 0px;
     display: block;
   }
-  .homepage__content--01 > img {
+  .homepage__content__01 > img {
     transform: none;
   }
 
@@ -154,23 +172,43 @@ body {
     margin: 0 0 12px 0;
   }
 
-.homepage__contents > Button {
+  .homepage__contents > Button {
     width: calc(100% - 48px);
     max-width: 720px;
     box-sizing: border-box;
   }
-}
 
-.homepage__box--container {
+
+.homepage__box__container {
   width: 100%;
   margin: 24px 0px;
+}
+
+.button__primary {
+  width: 100%;
+  height: 56px;
+  padding: 14px 24px;
+  gap: 10px;
+  background-color: #9935FF;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  border-radius: 12px;
+    border: 0px;
+    cursor: pointer;
+    &:disabled {
+      background-color: #CCCCCC;
+    }
+  }
 }
 
 /* 모바일 버전 (최대 767px) */
 @media (max-width: 767px) {
   .homepage__contents {
     width: 100%;
-    margin: 0;
+    margin: 60px 0px 0px 0px;
     height: auto;
     flex-direction: column;
     align-items: center;
@@ -187,30 +225,30 @@ body {
     gap: 48px;
   }
 
-  .homepage__content--01,
-  .homepage__content--02 {
+  .homepage__content__01,
+  .homepage__content__02 {
     flex-direction: column;
     justify-content: center;
   }
   
-  .homepage__content--01 {
+  .homepage__content__01 {
     height: auto;
     object-fit: cover;
     object-position: center;
     overflow: hidden;
   }
 
-  .homepage__content--02 {
+  .homepage__content__02 {
     height: 362px;
   }
 
-  .homepage__content--01 > img,
-  .homepage__content--02 > img {
+  .homepage__content__01 > img,
+  .homepage__content__02 > img {
     height: auto;
     margin: 0 auto;
   }
   
-  .homepage__content--01 > img {
+  .homepage__content__01 > img {
     margin: 0 auto;
     width: 385px;
     display: block;
@@ -221,7 +259,7 @@ body {
     z-index: 1;
   }
 
-  .homepage__content--02 > img {
+  .homepage__content__02 > img {
     width: 420px;
     height: 113px;
     max-width: none;
@@ -255,7 +293,7 @@ body {
     font-size: 12px;
   }
 
-  .button--primary {
+  .button__primary {
     width: 100%;
     box-sizing: border-box;
   }
