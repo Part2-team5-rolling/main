@@ -213,6 +213,7 @@ function ListPage() {
                 transition: 'transform 0.5s ease',
                 overflow: 'hidden',
               }}
+              onClick={() => navigate(`/post/${item.id}`)}
             >
               {recentList.map((item) => (
                 <div
@@ -281,6 +282,7 @@ function ListPage() {
           나도 만들어보기
         </Button>
       </div>
+
     </div>
   );
 }
