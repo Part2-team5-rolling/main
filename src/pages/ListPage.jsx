@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; // 추가
 import styles from '../styles/Pages/ListPage.module.css';
-import { fetchRollingList } from '../api/list-api';
+import { fetchRollingList } from '../api/list-api'; // 수정된 API 임포트
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 
@@ -13,11 +13,12 @@ function ListPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // API에서 데이터 가져오기
   useEffect(() => {
     const loadList = async () => {
       try {
-        const data = await fetchRollingList(1); // 페이지 번호를 API 명세에 맞게 넘겨줌
-        setList(data.results); // 원본만 저장
+        const data = await fetchRollingList(1, 10); // API를 사용하여 데이터를 가져옵니다.
+        setList(data.results); // 가져온 데이터 저장
       } catch (error) {
         console.error('롤링 리스트 불러오기 실패:', error);
       } finally {
@@ -43,18 +44,21 @@ function ListPage() {
     return emojiCount;
   };
 
-  // 각 받은 사람 별로 이모지 갯수 계산
-  const getReactionsByRecipient = () => {
+// 각 받은 사람 별로 이모지 갯수 계산
+const getReactionsByRecipient = () => {
     const reactionsByRecipient = {};
 
     list.forEach((item) => {
       item.recentMessages.forEach((msg) => {
         const recipient = item.recipient;
 
-        if (!reactionsByRecipient[recipient]) {
-          reactionsByRecipient[recipient] = [];
+        // reactions가 존재하는지 확인
+        if (msg.reactions) {
+          if (!reactionsByRecipient[recipient]) {
+            reactionsByRecipient[recipient] = [];
+          }
+          reactionsByRecipient[recipient].push(...msg.reactions);
         }
-        reactionsByRecipient[recipient].push(...msg.reactions);
       });
     });
 
@@ -213,7 +217,6 @@ function ListPage() {
                 transition: 'transform 0.5s ease',
                 overflow: 'hidden',
               }}
-              onClick={() => navigate(`/post/${item.id}`)}
             >
               {recentList.map((item) => (
                 <div
@@ -277,12 +280,12 @@ function ListPage() {
           </button>
         </div>
       </div>
+
       <div className={styles['list-page__buttons']}>
         <Button onClick={() => goToPage('/post')} className="button--primary">
           나도 만들어보기
         </Button>
       </div>
-
     </div>
   );
 }
