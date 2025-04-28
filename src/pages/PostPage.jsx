@@ -179,7 +179,7 @@ const PostPage = () => {
 						/>
 					</PostModal>
 				)}
-				<div className={style.ovserver__target} ref={targetRef}></div>
+				<div className={style.observer__target} ref={targetRef}></div>
 			</section>
 		</>
 	);
