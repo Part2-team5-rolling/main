@@ -88,13 +88,12 @@ const EditPage = () => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener('click', HandleModalClick);
-    return () => {
-      window.removeEventListener('click', HandleModalClick);
-      console.log('removeEventListener');
-    };
-  }, [showModal]);
+	useEffect(() => {
+		window.addEventListener('click', HandleModalClick);
+		return () => {
+			window.removeEventListener('click', HandleModalClick);
+		};
+	}, [showModal]);
 
   // 롤링 페이퍼 기본 데이터 불러오기
   useEffect(() => {
@@ -167,7 +166,7 @@ const EditPage = () => {
         />
       )}
           <button
-            className='button--delete-rolling-page'
+            className={style.button__delete_rolling_page}
             onClick={(e) => {
               e.stopPropagation(); // 카드 클릭 막기
               handleDeleteRollingPage(id); // 해당 롤링페이지 삭제
@@ -195,7 +194,7 @@ const EditPage = () => {
                     setModalItem(message);
                   }}
                 />
-                <button className='button--delete-card'
+                <button className={style.button__delete_card}
                   onClick={(e) => {
                     e.stopPropagation(); // 카드 클릭 막기
                     handleDeleteMessage(message.id);
@@ -227,9 +226,7 @@ const EditPage = () => {
           </PostModal>
         )}
   
-        <div className={style.ovserver__target} ref={targetRef}>
-          ...로딩중
-        </div>
+        <div className={style.observer__target} ref={targetRef}></div>
       </section>
     </>
   )};

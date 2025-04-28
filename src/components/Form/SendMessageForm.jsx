@@ -7,6 +7,7 @@ import Button from '../common/Button';
 import style from '../../styles/Form/SendMessageForm.module.css';
 import TextEditor from '../../styles/Form/TextEditor';
 import ProfileImages from './ProfileImages';
+import buttonStyles from '../../styles/Button.module.css';
 
 const RELATIONSHIP_OPTIONS = ['친구', '지인', '동료', '가족'];
 const FONT_OPTIONS = ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체'];
@@ -139,7 +140,7 @@ function SendMessageForm({ reciipientId }) {
           selectedOption={values.font}
           handleChange={handleChange} />
       </div>
-      <Button className={`button--primary`} type='submit' disabled={error.error || contentError}>생성하기</Button>
+      <Button  className={buttonStyles.button__primary} type='submit' disabled={error.error || contentError}>생성하기</Button>
     </form>
   );
 }
