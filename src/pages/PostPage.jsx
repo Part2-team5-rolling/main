@@ -132,68 +132,66 @@ const PostPage = () => {
 	return (
 		<>
 			<Header />
-			<div className={style.post__wrap}>
-				{headerLoad ? (
-					<h1>로딩중...</h1>
-				) : (
-					<PostHeader
-						userId={id}
-						userName={name}
-						messageCount={messageCount}
-						reactionCount={reactionCount}
-						recentMessage={recentMessages}
-						topReactions={topReactions}
-						setSelectedEmoji={setSelectedEmoji}
-					/>
+			{headerLoad ? (
+				<h1>로딩중...</h1>
+			) : (
+				<PostHeader
+					userId={id}
+					userName={name}
+					messageCount={messageCount}
+					reactionCount={reactionCount}
+					recentMessage={recentMessages}
+					topReactions={topReactions}
+					setSelectedEmoji={setSelectedEmoji}
+				/>
+			)}
+
+			<section className={style.post__content} style={background}>
+				<div className={style.card__wrap}>
+					<Card userId={id} />
+					{messageCount === 0
+						? ''
+						: messages.map((message) => {
+								return (
+									<Card
+										key={message.id}
+										id={message.id}
+										sender={message.sender}
+										relationship={message.relationship}
+										profileImg={message.profileImageURL}
+										cardFont={message.font}
+										content={message.content}
+										createdAt={message.createdAt}
+										onClick={() => {
+											setShowModal(true);
+											setModalItem(message);
+										}}
+									/>
+								);
+						  })}
+				</div>
+
+				<Link to={`/post/${id}/edit`} className={style.edit__Link}>
+					수정하기
+				</Link>
+
+				{showModal && (
+					<PostModal>
+						<ModalItem
+							sender={modalItem.sender}
+							relationship={modalItem.relationship}
+							profileImg={modalItem.profileImageURL}
+							cardFont={modalItem.font}
+							content={modalItem.content}
+							createdAt={modalItem.createdAt}
+							onClose={() => {
+								setShowModal(false);
+							}}
+						/>
+					</PostModal>
 				)}
-
-				<section className={style.post__content} style={background}>
-					<div className={style.card__wrap}>
-						<Card userId={id} />
-						{messageCount === 0
-							? ''
-							: messages.map((message) => {
-									return (
-										<Card
-											key={message.id}
-											id={message.id}
-											sender={message.sender}
-											relationship={message.relationship}
-											profileImg={message.profileImageURL}
-											cardFont={message.font}
-											content={message.content}
-											createdAt={message.createdAt}
-											onClick={() => {
-												setShowModal(true);
-												setModalItem(message);
-											}}
-										/>
-									);
-							  })}
-					</div>
-
-					<Link to={`/post/${id}/edit`} className={style.edit__Link}>
-						수정하기
-					</Link>
-
-					{showModal && (
-						<PostModal>
-							<ModalItem
-								sender={modalItem.sender}
-								relationship={modalItem.relationship}
-								profileImg={modalItem.profileImageURL}
-								cardFont={modalItem.font}
-								content={modalItem.content}
-								createdAt={modalItem.createdAt}
-								onClose={() => {
-									setShowModal(false);
-								}}
-							/>
-						</PostModal>
-					)}
-					<div className={style.observer__target} ref={targetRef}></div>
-				</section>
-			</div>
+				<div className={style.observer__target} ref={targetRef}></div>
+			</section>
 		</>
 	);
 };
