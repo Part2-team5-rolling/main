@@ -105,6 +105,7 @@ const PostHeader = ({
 								<EmojiPicker
 									width={307}
 									height={393}
+									lazyLoadEmojis={true}
 									onEmojiClick={(emojiData, event) => handleEmojiClick(emojiData, event)}
 								/>
 							</div>
