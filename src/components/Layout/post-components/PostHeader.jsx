@@ -67,58 +67,60 @@ const PostHeader = ({
 
 	return (
 		<div className={style.wrap}>
-			<h2 className={style.user__name}>To. {userName}</h2>
+			<div className={style.wrap__header}>
+				<h2 className={style.user__name}>To. {userName}</h2>
 
-			<div className={style.section__divider}></div>
+				<div className={style.section__divider}></div>
 
-			<div className={style.post__business_section}>
-				<div className={style.recent__message__section}>
-					{!messageCount ? '' : <RecentMessage recentMessage={recentMessage} messageCount={messageCount} />}
-				</div>
-
-				<div className={`${style.divider} ${style.first__divider}`}></div>
-
-				<TopReactions id={userId} topReactions={topReactions} />
-
-				{!reactionCount ? (
-					''
-				) : (
-					<div className={style.reaction__wrap}>
-						<button className={style.emoji__total} type='button' onClick={handleMoreEmoji} ref={emojiMoreRef}>
-							<img src={arrow} alt='이모지 더 보기' />
-						</button>
-						{isMoreEmoji && <EmojiDropDown id={userId} />}
+				<div className={style.post__business_section}>
+					<div className={style.recent__message__section}>
+						{!messageCount ? '' : <RecentMessage recentMessage={recentMessage} messageCount={messageCount} />}
 					</div>
-				)}
 
-				<ul className={style.button__list}>
-					<li className={style.emoji__add__list}>
-						<button className={style.emoji__add} type='button' onClick={handleEmojiOpen}>
-							<img src={addEmoji} alt='이모지 추가' />
-							<span>추가</span>
-						</button>
-						{isEmojiOpen && (
-							<div className={style.emoji__picker}>
-								<EmojiPicker
-									width={307}
-									height={393}
-									lazyLoadEmojis={true}
-									emojiStyle={EmojiStyle.NATIVE}
-									skinTonesDisabled={true}
-									categories={emojiCategory}
-									onEmojiClick={(emojiData, event) => handleEmojiClick(emojiData, event)}
-								/>
-							</div>
-						)}
-					</li>
-					<li className={style.divider}></li>
-					<li className={style.share__list}>
-						<button className={style.share} type='button' ref={shareButtonRef} onClick={handleClick}>
-							<img src={share} alt='공유하기' />
-						</button>
-						{isOpen && <ShareMenu onClick={handleClick} commentCount={messageCount} />}
-					</li>
-				</ul>
+					<div className={`${style.divider} ${style.first__divider}`}></div>
+
+					<TopReactions id={userId} topReactions={topReactions} />
+
+					{!reactionCount ? (
+						''
+					) : (
+						<div className={style.reaction__wrap}>
+							<button className={style.emoji__total} type='button' onClick={handleMoreEmoji} ref={emojiMoreRef}>
+								<img src={arrow} alt='이모지 더 보기' />
+							</button>
+							{isMoreEmoji && <EmojiDropDown id={userId} />}
+						</div>
+					)}
+
+					<ul className={style.button__list}>
+						<li className={style.emoji__add__list}>
+							<button className={style.emoji__add} type='button' onClick={handleEmojiOpen}>
+								<img src={addEmoji} alt='이모지 추가' />
+								<span>추가</span>
+							</button>
+							{isEmojiOpen && (
+								<div className={style.emoji__picker}>
+									<EmojiPicker
+										width={307}
+										height={393}
+										lazyLoadEmojis={true}
+										emojiStyle={EmojiStyle.NATIVE}
+										skinTonesDisabled={true}
+										categories={emojiCategory}
+										onEmojiClick={(emojiData, event) => handleEmojiClick(emojiData, event)}
+									/>
+								</div>
+							)}
+						</li>
+						<li className={style.divider}></li>
+						<li className={style.share__list}>
+							<button className={style.share} type='button' ref={shareButtonRef} onClick={handleClick}>
+								<img src={share} alt='공유하기' />
+							</button>
+							{isOpen && <ShareMenu onClick={handleClick} commentCount={messageCount} />}
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	);

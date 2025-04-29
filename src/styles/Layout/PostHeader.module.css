@@ -5,11 +5,19 @@
 }
 
 .wrap {
+	z-index: 100;
+	position: fixed;
+	width: 100%;
 	background-color: rgba(255, 255, 255, 1);
-	max-width: 1200px;
-	margin: 13px auto;
+	border-bottom: 1px solid #EDEDED;
+}
+
+.wrap__header {
 	display: flex;
 	align-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 13px 0;
 }
 
 .user__name {
@@ -130,9 +138,10 @@
 }
 
 @media (max-width: 1248px) {
-	.wrap {
-		margin: 13px 24px;
+	.wrap__header  {
+		padding: 13px 24px;
 	}
+
 	.share__text__wrap {
 		right: 24px;
 	}
@@ -148,11 +157,13 @@
 	}
 }
 
-@media (max-width: 582px) {
-	.wrap {
-		margin: 13px 20px;
+@media (max-width: 767px) {
+	.wrap__header {
+		padding: 12px 20px;
 	}
+}
 
+@media (max-width: 582px) {
 	.user__name {
 		font-size: 18px;
 	}
@@ -201,10 +212,6 @@
 }
 
 @media (max-width: 320px) {
-	.wrap {
-		margin-left: 16px;
-		margin-right: 16px;
-	}
 	.divider {
 		display: none;
 	}
