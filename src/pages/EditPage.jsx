@@ -17,6 +17,7 @@ const colorMap = {
 };
 
 const EditPage = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const [headerLoad, setHeaderLoad] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -169,7 +170,7 @@ const handleDeleteRollingPage = async (pageId) => {
       alert('롤링페이지가 삭제되었습니다.');
 
       // 삭제 후 목록 페이지로 이동
-      navigate('/list'); // 목록 페이지로 리디렉션
+      navigate('/list');
     } else {
       alert('삭제 실패!');
     }
