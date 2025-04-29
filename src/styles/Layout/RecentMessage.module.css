@@ -4,40 +4,34 @@
 	max-width: 76px;
 }
 
-.recent__message__img {
+.avatar {
 	width: 28px;
 	height: 28px;
 	border: 1px solid rgba(227, 227, 227, 1);
+	background-color: rgba(255, 255, 255, 1);
 	border-radius: 9999px;
-	position: relative;
+	object-fit: cover;
+	margin-left: -16px;
 }
 
-.recent__message__wrap > img:nth-child(2) {
-	position: relative;
-	left: -16px;
+.avatar:last-child {
+	margin-right: 14px;
 }
 
-.recent__message__wrap > img:nth-child(3) {
+.recent__message__img {
 	position: relative;
-	left: -32px;
 }
 
 .message__count {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 28px;
-	height: 28px;
-	border: 1px solid rgba(227, 227, 227, 1);
-	border-radius: 9999px;
-	background-color: rgba(255, 255, 255, 1);
-	position: relative;
-	left: -48px;
 	font-size: 12px;
 	font-weight: 500;
 	line-height: 18px;
 	font-family: 'Pretendard-Regular';
 	padding: 7px;
+	position: relative;
 }
 
 .count__comment {

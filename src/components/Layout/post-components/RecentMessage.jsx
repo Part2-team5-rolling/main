@@ -5,10 +5,16 @@ const RecentMessage = ({ recentMessage, messageCount }) => {
 		<>
 			<div className={style.recent__message__wrap}>
 				{recentMessage?.map((item) => {
-					return <img key={item.id} src={item.profileImageURL} className={style.recent__message__img} />;
+					return (
+						<img key={item.id} src={item.profileImageURL} className={`${style.recent__message__img} ${style.avatar}`} />
+					);
 				})}
 
-				{messageCount < 3 ? '' : <div className={style.message__count}>{`+${messageCount - 3}`}</div>}
+				{messageCount <= 3 ? (
+					''
+				) : (
+					<div className={`${style.message__count} ${style.avatar}`}>{`+${messageCount - 3}`}</div>
+				)}
 			</div>
 			<div className={style.count__comment}>
 				{messageCount}
