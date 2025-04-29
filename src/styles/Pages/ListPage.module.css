@@ -4,6 +4,7 @@
     margin: 0 auto;
     max-width: 1160px;
     gap: 50px;
+    padding-bottom: 24px;
 }
 
 .list-page__popular {
@@ -100,22 +101,27 @@
 
 .list-page__emoji-container {
     display: flex;
+    flex-direction: row;
     min-height: 53px;
     gap: 8px;
     padding-top: 4px;
-    font-size: 14px;
+    align-items: flex-end;
 }
 
-.list-page__box-emojicount {
+.list-page__box-emoji {
     display: flex;
-    gap: 2px;
-    padding: 8px 12px;
+    gap: 2px !important;
+    padding: 6px 12px;
     align-items: center;
     border-radius: 32px;
-    background-color: rgba(0,0,0,0.54);
+    background-color: rgba(0, 0, 0, 0.54);
 }
 
-.list-page__num-emojicount {
+.list-page__real-emoji {
+    font-size: 18px;
+}
+
+.list-page__num-emoji {
     font-size: 16px;
     line-height: 20px;
     color: #fff;
@@ -205,13 +211,19 @@
 
 /* 태블릿 (해상도 768px ~ 1023px)*/ 
 @media all and (min-width:768px) and (max-width:1023px) { 
-    .list-page {
+    .list-page__popular h2,
+    .list-page__recent h2 {
         padding: 0 24px;
+    }
+
+    .list-page__card-container {
+        padding-left: 24px;
     }
 } 
 
 /* 모바일 (해상도 ~767px)*/ 
 @media all and (max-width:767px) {
+
     .list-page {
         padding: 0 20px;
     }
@@ -237,11 +249,11 @@
         font-size: 14px;
     }
 
-    .list-page__box-emojicount {
+    .list-page__box-emoji {
         padding: 6px 8px;
     }
 
-    .list-page__num-emojicount {
+    .list-page__num-emoji {
         font-size: 14px;
     }
 }

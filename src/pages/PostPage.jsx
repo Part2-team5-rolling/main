@@ -27,7 +27,6 @@ const PostPage = () => {
 	const [modalItem, setModalItem] = useState(false);
 	const [selectedEmoji, setSelectedEmoji] = useState({});
 	const [reLoading, setReLoading] = useState(false);
-	const [EmojiSend, setEmojiSend] = useState({});
 	const { id } = useParams();
 	const { name, backgroundColor, backgroundImageURL, messageCount, reactionCount, recentMessages, topReactions } = data;
 	const background =
@@ -122,7 +121,6 @@ const PostPage = () => {
 		const emojiDataSend = async () => {
 			try {
 				const dataSend = await postRecipientsReactions(id, selectedEmoji);
-				setEmojiSend(dataSend);
 			} catch (error) {
 				console.error('Post page 데이터 불러오기 실패!', error);
 			}
