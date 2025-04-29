@@ -56,6 +56,9 @@
     font-size: 24px;
     line-height: 36px;
     color: #181818;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .list-page__card .list-page__profile-wrap {
@@ -156,7 +159,6 @@
 } */
 
 .imgOn .list-page__recipient,
-.imgOn .list-page__profile-count,
 .imgOn .list-page__count {
     color: #fff;
 }
@@ -218,6 +220,10 @@
 
     .list-page__card-container {
         padding-left: 24px;
+    }
+
+    .carousel-buttons-container {
+        display: none !important;
     }
 } 
 
