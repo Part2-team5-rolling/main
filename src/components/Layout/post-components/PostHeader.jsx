@@ -18,7 +18,6 @@ const PostHeader = ({
 	reactionCount,
 	topReactions,
 	setSelectedEmoji,
-	setReLoading,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isEmojiOpen, setIsEmojiOpen] = useState(false);
@@ -42,7 +41,6 @@ const PostHeader = ({
 			type: 'increase',
 		};
 		setSelectedEmoji(newReaction);
-		setReLoading((prev) => !prev);
 		setIsEmojiOpen((prev) => !prev);
 	};
 

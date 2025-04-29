@@ -28,18 +28,17 @@ const Card = ({ userId, id, sender, relationship, profileImg, cardFont, content,
 	const createdDate = date.slice(0, textIndex);
 	const relationshipColor = RELATIONSHIP_COLORS[relationship];
 	const parserContent = parser(String(content));
-	console.log(content);
 
 	return (
 		<>
 			{!sender ? (
-				<div className={style.card}>
-					<div className={style.card__link__button}>
-						<Link to={`/post/${userId}/message`}>
+				<Link to={`/post/${userId}/message`}>
+					<div className={style.card}>
+						<div className={style.card__link__button}>
 							<img src={plus} alt='edit 페이지 이동 버튼' />
-						</Link>
+						</div>
 					</div>
-				</div>
+				</Link>
 			) : (
 				<div className={style.message__card} onClick={onClick}>
 					<div className={style.message__wrap} key={id} style={{ fontFamily: cardFont }}>

@@ -52,8 +52,7 @@
   color: #333;
   cursor: pointer;
   background-color: #f4f4f4;
-  width: 122px;
-  height: 40px;
+  width: 100px;
   font-size: 14px;
   border-radius: 8px;
   padding: 0.5rem 1.2rem;
@@ -72,8 +71,8 @@
 }
 
 .rolling-paper__color-box {
-  width: 100%;
-  height: 168px;
+  width: 130px;
+  height: 130px;
   border-radius: 16px;
   position: relative;
   cursor: pointer;
@@ -82,8 +81,8 @@
 }
 
 .rolling-paper__image-box {
-  width: 100%;
-  height: 168px;
+  width: 130px;
+  height: 130px;
   border-radius: 16px;
   position: relative;
   cursor: pointer;
@@ -132,7 +131,7 @@
 /* 태블릿 버전 (768px ~ 1023px) */
 @media (max-width: 1023px) {
   .rolling-paper__submit-button {
-    width: 720px;
+    width: 566px;
     position: absolute;
     bottom: 24px;
   }
@@ -141,7 +140,7 @@
 /* 모바일 버전 (최대 767px) */
 @media (max-width: 767px) {
   .rolling-paper__input {
-    width: 320px;
+    width: 276px;
   }
 
   .rolling-paper__section-title,
@@ -153,10 +152,6 @@
     font-size: 14px;
   }
 
-  .rolling-paper__tab-button {
-    width: 118px;
-  }
-
   .rolling-paper__color-box-container,
   .rolling-paper__image-box-container {
     width: 250px;
@@ -165,13 +160,7 @@
     grid-column-gap: 1rem;
   }
 
-  .rolling-paper__color-box,
-  .rolling-paper__image-box {
-    width: 154px;
-    height: 154px;
-  }
-
   .rolling-paper__submit-button {
-    width: 320px;
+    width: 276px;
   }
 }
