@@ -153,11 +153,18 @@ const PostPage = () => {
 					{messageCount === 0
 						? ''
 						: messages.map((message) => {
+								const senderLength = 10;
+								let senderName;
+								if (message.sender?.length > senderLength) {
+									senderName = message.sender.slice(0, senderLength) + '...';
+								} else {
+									senderName = message.sender;
+								}
 								return (
 									<Card
 										key={message.id}
 										id={message.id}
-										sender={message.sender}
+										sender={senderName}
 										relationship={message.relationship}
 										profileImg={message.profileImageURL}
 										cardFont={message.font}
