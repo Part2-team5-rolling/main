@@ -108,7 +108,7 @@ body {
 
   .homepage__contents {
     max-width: 975px;
-    margin: 60px 24px 0px 24px;
+    margin: 0px 24px 0px 24px;
   }
 
   .homepage__content__01,
@@ -193,7 +193,7 @@ body {
 @media (max-width: 767px) {
   .homepage__contents {
     width: 100%;
-    margin: 60px 0px 0px 0px;
+    margin: 0px;
     height: auto;
     flex-direction: column;
     align-items: center;
@@ -224,30 +224,23 @@ body {
   }
 
   .homepage__content__02 {
-    height: 362px;
+    height: auto;
   }
 
   .homepage__content__01 > img,
   .homepage__content__02 > img {
-    height: auto;
+    width: 140%;
+    height: auto; 
     margin: 0 auto;
+    display: block;
   }
   
   .homepage__content__01 > img {
-    margin: 0 auto;
-    width: 385px;
-    display: block;
-    left: 5%;
-    bottom: 0;
     transform: translateX(-14%);
-    max-width: none;
     z-index: 1;
   }
 
   .homepage__content__02 > img {
-    width: 420px;
-    height: 113px;
-    max-width: none;
     transform: translateX(-14%);
     z-index: 1;
     overflow-x: hidden;
