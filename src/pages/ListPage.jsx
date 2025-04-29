@@ -1,4 +1,3 @@
-// src/pages/ListPage.jsx
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Pages/ListPage.module.css';
@@ -7,7 +6,7 @@ import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 import buttonStyles from '../styles/Button.module.css';
 
-const CARD_WIDTH = 295;        // 카드 너비
+const CARD_WIDTH = 275;        // 카드 너비
 const GAP = 20;                // 카드 사이 간격
 const VISIBLE = 4;             // 한 화면에 보일 카드 수
 const STEP = CARD_WIDTH + GAP; // 한 칸당 이동 거리
@@ -116,7 +115,7 @@ export default function ListPage() {
   // 렌더링 공통 캐러셀
   const renderCarousel = (data, idx, onPrev, onNext) => {
     // 실제 너비 계산
-    const wrapperWidth = data.length * CARD_WIDTH + (data.length - 1) * GAP;
+    const wrapperWidth = data.length * CARD_WIDTH + (data.length) * GAP;
     const containerWidth = VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP;
     const maxTranslate = wrapperWidth - containerWidth;
     // idx*STEP 을 maxTranslate 이하로 캡핑
@@ -172,12 +171,20 @@ export default function ListPage() {
                     <span>{item.recentMessages.length}</span>명이 작성했어요!
                   </p>
                   <div className={styles['list-page__emoji-container']}>
-                    {item.topReactions?.map((r, i) => (
-                      <span key={i} className={styles['list-page__box-emoji']}>
-                        <span className={styles['list-page__real-emoji']}>{r.emoji}</span>
-                        <span className={styles['list-page__num-emoji']}>{r.count}</span>
-                      </span>
-                    ))}
+                    {item.topReactions?.map((r, i) => {
+                      // count가 0이면 아무 것도 그리지 않음
+                      if (r.count === 0) return null;
+                      return (
+                        <span key={i} className={styles['list-page__box-emoji']}>
+                          <span className={styles['list-page__real-emoji']}>
+                            {r.emoji}
+                          </span>
+                          <span className={styles['list-page__num-emoji']}>
+                            {r.count}
+                          </span>
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
