@@ -197,6 +197,8 @@ return (
       />
     )}
 
+
+    <section className={style.post__content} style={background}>
     <button
       className={style.button__delete_rolling_page}
       onClick={(e) => {
@@ -206,12 +208,7 @@ return (
     >
       삭제하기
     </button>
-
-    <section className={style.post__content} style={background}>
       <div className={style.card__wrap}>
-        {/* 작성자 카드 */}
-        <Card userId={id} />
-
         {/* 메시지가 있을 때만 메시지 카드 렌더링 */}
         {messageCount > 0 &&
           messages.map((message) => (
