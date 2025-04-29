@@ -33,3 +33,23 @@ export async function fetchAllRollingList() {
     throw error;
   }
 }
+
+export async function fetchRollingList(sort) {
+  try {
+    const limit = 8;
+    const offset = 0;
+    const sortQuery = sort ? `&sort=${sort}` : '';
+
+    const res = await fetch(
+      `${BASE_URL}/?team=${TEAM}&limit=${limit}&offset=${offset}${sortQuery}`,
+      { method: 'GET', headers: HEADERS }
+    );
+    if (!res.ok) throw new Error('롤링 페이지 리스트를 불러오는 데 실패했습니다.');
+
+    const data = await res.json();
+    return data.results;
+  } catch (error) {
+    console.error('API 요청 오류:', error);
+    throw error;
+  }
+}
