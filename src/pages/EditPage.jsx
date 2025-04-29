@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import PostHeader from '../components/Layout/post-components/PostHeader';
 import { getRecipientsData, getRecipientsMessage, postRecipientsReactions, deleteMessage, deleteRecipient  } from '../api/recipients-api';
 import { useEffect, useRef, useState } from 'react';
