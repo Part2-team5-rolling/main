@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Pages/ListPage.module.css';
-import { fetchAllRollingList } from '../api/list-api';
+import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 import buttonStyles from '../styles/Button.module.css';
@@ -37,8 +37,8 @@ export default function ListPage() {
     (async () => {
       setLoading(true);
       try {
-        const data = await fetchAllRollingList();
-        setList(data.results);
+        const data = await fetchRollingList('like');
+        setList(data);
       } catch (e) {
         console.error(e);
       } finally {
