@@ -221,6 +221,10 @@
     .list-page__card-container {
         padding-left: 24px;
     }
+
+    .carousel-buttons-container {
+        display: none !important;
+    }
 } 
 
 /* 모바일 (해상도 ~767px)*/ 
