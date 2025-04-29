@@ -89,7 +89,7 @@
 }
 
 .card__wrapper_with_delete {
-  position: relative;  /* 카드 주변에 딜리트 버튼을 위치시키기 위해 상대 위치 설정 */
+  position: relative; 
 }
 
 @media (max-width: 1248px) {
@@ -105,7 +105,7 @@
 
   .button__delete_rolling_page {
     position: fixed;
-    top: auto; /* top 초기화 */
+    top: auto; 
     left: 24px;
     right: 24px;
     bottom: 19px;
