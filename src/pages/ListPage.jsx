@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Pages/ListPage.module.css';
-import { fetchAllRollingList } from '../api/list-api';
+import { fetchRollingList } from '../api/list-api';
 import Header from '../components/common/Header';
 import Button from '../components/common/Button';
 import buttonStyles from '../styles/Button.module.css';
@@ -13,6 +13,7 @@ const STEP = CARD_WIDTH + GAP; // 한 칸당 이동 거리
 
 export default function ListPage() {
   const [list, setList] = useState([]);
+  const [sortedList, setSortedList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [recentIndex, setRecentIndex] = useState(0);
@@ -37,8 +38,11 @@ export default function ListPage() {
     (async () => {
       setLoading(true);
       try {
-        const data = await fetchAllRollingList();
-        setList(data.results);
+        const data = await fetchRollingList();
+        setList(data);
+
+        const sortedList = await fetchRollingList('like');
+        setSortedList(sortedList);
       } catch (e) {
         console.error(e);
       } finally {
@@ -48,13 +52,8 @@ export default function ListPage() {
   }, [location.pathname]);
 
   // 인기순 & 최근순 목록
-  const popularList = [...list]
-  // 메시지를 가장 많이 받은 순으로 전체 정렬 후 상위 8개 추출
-    .sort((a, b) => b.messageCount - a.messageCount)
-    .slice(0, 8);
-  const recentList = [...list]
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(0, 8);
+  const popularList = [...sortedList];
+  const recentList = [...list];
 
   // 슬라이드 핸들러
   const prevSlide = useCallback(() => setCurrentIndex(i => Math.max(0, i - 1)), []);
