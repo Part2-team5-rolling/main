@@ -72,7 +72,12 @@ const RollingPaperForm = () => {
         type="text"
         placeholder="받는 사람 이름을 입력해 주세요"
         value={to}
-        onChange={(e) => setTo(e.target.value)}
+        onChange={(e) => {
+          setTo(e.target.value);
+          if (e.target.value.trim() !== "") {
+            setError(false);
+          }
+        }}
         onBlur={handleBlur}
         maxLength={40}
         className={styles['rolling-paper__input']}
