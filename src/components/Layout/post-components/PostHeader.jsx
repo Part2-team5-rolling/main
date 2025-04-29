@@ -26,6 +26,7 @@ const PostHeader = ({
 
 	const emojiMoreRef = useRef(null);
 	const shareButtonRef = useRef(null);
+	const emojiCategory = ['suggested', 'smileys_people', 'animals_nature', 'travel_places', 'activities'];
 
 	const handleClick = () => {
 		setIsOpen(!isOpen);
@@ -106,6 +107,7 @@ const PostHeader = ({
 									lazyLoadEmojis={true}
 									emojiStyle={EmojiStyle.NATIVE}
 									skinTonesDisabled={true}
+									categories={emojiCategory}
 									onEmojiClick={(emojiData, event) => handleEmojiClick(emojiData, event)}
 								/>
 							</div>
