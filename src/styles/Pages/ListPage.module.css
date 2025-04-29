@@ -100,22 +100,27 @@
 
 .list-page__emoji-container {
     display: flex;
+    flex-direction: row;
     min-height: 53px;
     gap: 8px;
     padding-top: 4px;
-    font-size: 14px;
+    align-items: flex-end;
 }
 
-.list-page__box-emojicount {
+.list-page__box-emoji {
     display: flex;
-    gap: 2px;
-    padding: 8px 12px;
+    gap: 2px !important;
+    padding: 6px 12px;
     align-items: center;
     border-radius: 32px;
-    background-color: rgba(0,0,0,0.54);
+    background-color: rgba(0, 0, 0, 0.54);
 }
 
-.list-page__num-emojicount {
+.list-page__real-emoji {
+    font-size: 18px;
+}
+
+.list-page__num-emoji {
     font-size: 16px;
     line-height: 20px;
     color: #fff;
@@ -237,11 +242,11 @@
         font-size: 14px;
     }
 
-    .list-page__box-emojicount {
+    .list-page__box-emoji {
         padding: 6px 8px;
     }
 
-    .list-page__num-emojicount {
+    .list-page__num-emoji {
         font-size: 14px;
     }
 }
