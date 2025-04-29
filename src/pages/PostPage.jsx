@@ -121,11 +121,11 @@ const PostPage = () => {
 		const emojiDataSend = async () => {
 			try {
 				const dataSend = await postRecipientsReactions(id, selectedEmoji);
+				setReLoading((prev) => !prev);
 			} catch (error) {
 				console.error('Post page 데이터 불러오기 실패!', error);
 			}
 		};
-		setReLoading((prev) => !prev);
 		emojiDataSend();
 	}, [selectedEmoji]);
 
