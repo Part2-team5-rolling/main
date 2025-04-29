@@ -4,6 +4,10 @@
 	min-height: 100vh;
 }
 
+.card {
+  position: relative;
+}
+
 .card__wrap {
 	width: 1200px;
 	margin: 0 auto;
@@ -81,6 +85,10 @@
   padding: 8px;
   cursor: pointer;
   z-index: 10;
+}
+
+.card__wrapper_with_delete {
+  position: relative;  /* 카드 주변에 딜리트 버튼을 위치시키기 위해 상대 위치 설정 */
 }
 
 @media (max-width: 1248px) {
