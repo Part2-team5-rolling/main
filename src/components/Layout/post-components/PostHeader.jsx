@@ -7,7 +7,7 @@ import share from '/icons/share.png';
 import ShareMenu from './ShareMenu';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker, { EmojiStyle } from 'emoji-picker-react';
 import EmojiDropDown from './EmojiDropDown';
 
 const PostHeader = ({
@@ -104,6 +104,8 @@ const PostHeader = ({
 									width={307}
 									height={393}
 									lazyLoadEmojis={true}
+									emojiStyle={EmojiStyle.NATIVE}
+									skinTonesDisabled={true}
 									onEmojiClick={(emojiData, event) => handleEmojiClick(emojiData, event)}
 								/>
 							</div>
